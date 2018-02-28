@@ -48,13 +48,13 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
             {errors.story && <p className="alert alert-warning" role="alert">{errors.story}</p>}
           </div>
           <div className="form-group">
-            <label htmlFor="sponsor">Sponsor</label>
+            <label htmlFor="target">Target</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              id="sponsor"
-              name="sponsor"
-              value={farmer.sponsor}
+              id="target"
+              name="target"
+              value={farmer.target}
               onChange={handleChange}
             />
             {errors.looking && <p className="alert alert-warning" role="alert">{errors.looking}</p>}
@@ -71,6 +71,33 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
 
           </div>
           {errors.offer && <p className="alert alert-warning" role="alert">{errors.offer}</p>}
+
+          <div className="form-group">
+            <label htmlFor="name">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              id="email"
+              name="email"
+              value={farmer.email}
+              onChange={handleChange}
+            />
+            { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="name">Number</label>
+            <input
+              type="text"
+              className="form-control"
+              id="number"
+              name="number"
+              value={farmer.number}
+              onChange={handleChange}
+            />
+            { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
+          </div>
+
           <div>
             <button disabled={formIsInvalid} className="save-button">Save</button>
           </div>

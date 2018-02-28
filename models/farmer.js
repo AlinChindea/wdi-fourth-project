@@ -13,12 +13,10 @@ const farmerSchema = mongoose.Schema({
     weekendStay: {type: Boolean, required: 'Please choose what you offer in exchange'},
     farmExperience: {type: Boolean, required: 'Please choose what you offer in exchange'}
   },
-  target: {type: Number, required: 'Please add your required funding target'},
+  target: {type: String, required: 'Please add your required funding target'},
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
-  contact: {
-    email: {type: String, required: true},
-    number: {type: String, required: true}
-  }
+  email: {type: String, required: true},
+  number: {type: String, required: true}
 });
 
 farmerSchema.set('toJSON', {

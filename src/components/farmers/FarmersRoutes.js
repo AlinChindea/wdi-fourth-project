@@ -3,10 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 
 // import ProtectedRoute from '../utility/ProtectedRoute';
 
-import FarmersHome from './FarmersHome';
+
 import FarmersIndex from './FarmersIndex';
 import FarmersShow from  './FarmersShow';
 import FarmersNew from './FarmersNew';
+import FarmersHome from './FarmersHome';
 // import FarmersEdit from './FarmersEdit';
 
 const FarmersRoutes = () => {

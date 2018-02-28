@@ -16,24 +16,31 @@ class FarmersIndex extends Component {
 
   render() {
     return(
-      <div>
-        {this.state.farmers.map(farmer =>
-          <div key={farmer.id}>
-            <Link to={`/farmers/${farmer.id}`}>
-              <img src={farmer.image} className="img-responsive" alt={farmer.name}/>
-            </Link>
-            <h3><strong>{farmer.name}</strong></h3>
-            <p>Looking for: £{farmer.target} worth of donations</p>
-            <p>Offers: </p>
-            <ul>
-              {Object.keys(farmer.offer).map((keyName, i) =>
-                <li key={i}>{[keyName]}</li>
-              )}
-            </ul>
+      <div className="container">
+        <div className="row">
+          {this.state.farmers.map(farmer =>
+            <div key={farmer.id} className="col-md-3 col-sm-6 col-xs-12 mx-auto">
+              <div className="card border-none">
+                <div className="card-body">
+                  <Link to={`/farmers/${farmer.id}`}>
+                    <h2 className="mt-4 text-white lead text-center">{farmer.name}</h2>
+                  </Link>
 
-          </div>
-
-        )}
+                  <div className="mt-4">
+                    <h3><strong>{farmer.name}</strong></h3>
+                    <p>Looking for: £{farmer.target} worth of donations</p>
+                    <p>Offers: </p>
+                    <ul>
+                      {Object.keys(farmer.offer).map((keyName, i) =>
+                        <li key={i}>{[keyName]}</li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1>WDI Project 4</h1>
+          <h1>Farmers Friends</h1>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <FarmersRoutes />
