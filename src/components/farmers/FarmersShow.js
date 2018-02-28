@@ -15,15 +15,19 @@ class FarmersShow extends Component {
   }
 
   render() {
-    console.log(this.state.farmer);
     return(
       <div>
         <img src={this.state.farmer.image} className="img-responsive"/>
         <h3><strong>{this.state.farmer.name}</strong></h3>
         <p><em>{this.state.farmer.story}</em></p>
         <p><em>Looking for: £{this.state.farmer.target}</em></p>
-        <p><em>We are offering {this.state.farmer.offer} </em></p>
-        {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>} 
+        <p><em>We are offering:</em></p>
+        <ul>
+          {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) =>
+            <li key={i}>{[keyName]}</li>
+          )}
+        </ul>
+        {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
       </div>
 
     );
