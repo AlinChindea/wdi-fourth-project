@@ -8,6 +8,19 @@ class FarmersIndex extends Component {
   }
 
   componentWillMount() {
-    
+    Axios
+      .get('/api/farmers')
+      .then((res) => console.log(res))
+      .catch(err => console.log(err));
+  }
+
+  render() {
+    return(
+      <div>
+        INDEX PAGE
+      </div>
+    );
   }
 }
+
+export default FarmersIndex;
