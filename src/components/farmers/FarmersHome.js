@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Popup from 'reactjs-popup';
+
+import Modal from '../utility/Modal';
 
 const FarmersHome = () => {
   return(
@@ -25,16 +26,7 @@ const FarmersHome = () => {
       <div className="row">
         <div className="col-4">
           <div className="card">
-            <Popup trigger={<div><img className="card-img-top" src="https://goo.gl/UBNMkn" alt="tractors in field" />
-              <h3>How it works</h3> </div>} modal position="top center" closeOnDocumentClick>
-              {close => (
-                <h3>How it works content goes here
-                  <a className="close" onClick={close}>
-                  &times;
-                  </a>
-                </h3>
-              )}
-            </Popup>
+            <Modal />
           </div>
         </div>
         <div className="col-4">
