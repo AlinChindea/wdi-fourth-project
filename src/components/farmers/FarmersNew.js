@@ -10,12 +10,14 @@ class FarmersNew extends React.Component {
       name: '',
       image: '',
       story: '',
-      looking: '',
+      target: '',
       offer: {
         produce: false,
         weekendStay: false,
         farmExperience: false
-      }
+      },
+      email: '',
+      number: ''
     },
     errors: {}
   }
@@ -36,6 +38,8 @@ class FarmersNew extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(this.state.farmer);
 
     Axios
       .post('/api/farmers', this.state.farmer, {
