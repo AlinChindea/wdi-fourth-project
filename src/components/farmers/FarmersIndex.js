@@ -10,7 +10,7 @@ class FarmersIndex extends Component {
   componentWillMount() {
     Axios
       .get('/api/farmers')
-      .then(res => this.setState({ farmers: res.data }, console.log(res.data)))
+      .then(res => this.setState({ farmers: res.data }))
       .catch(err => console.log(err));
   }
 
