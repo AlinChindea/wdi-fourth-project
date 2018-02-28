@@ -14,7 +14,9 @@ body {
 }
 .brand-logo{
     width: 120px;
-    border-radius: 20%;
+}
+.rounded-circle {
+  border-radius: 20% !important;
 }
 .hero{
     background-image: url('https://goo.gl/RL3mj7');
