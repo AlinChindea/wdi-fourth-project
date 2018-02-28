@@ -2,7 +2,7 @@ import React from 'react';
 
 import BackButton from '../utility/BackButton';
 
-function FarmersForm({ history, handleSubmit, handleChange, farmer, errors }) {
+function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, handleFormCheckBox }) {
   const formIsInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <div className="container">
@@ -62,11 +62,11 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors }) {
           <div className="form-group">
             <label htmlFor="looking">Farmer offers:</label>
             <br />
-            Produce <input type="checkbox" name="Produce" value="" />
+            Produce <input type="checkbox" name="Produce" value="produce" checked={farmer.offer.produce} onChange={handleFormCheckBox}/>
             <br />
-            Weekend Stay <input type="checkbox" name="Weekend Stay" value="" />
+            Weekend Stay <input type="checkbox" name="Weekend Stay" value="weekendStay" checked={farmer.offer.weekendStay} onChange={handleFormCheckBox}/>
             <br />
-            Farm Experiences <input type="checkbox" name="Farm Experiences" value="" />
+            Farm Experiences <input type="checkbox" name="Farm Experiences" value="farmExperience" checked={farmer.offer.farmExperience} onChange={handleFormCheckBox}/>
             <br />
 
           </div>

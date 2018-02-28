@@ -11,9 +11,21 @@ class FarmersNew extends React.Component {
       image: '',
       story: '',
       looking: '',
-      offer: ''
+      offer: {
+        produce: false,
+        weekendStay: false,
+        farmExperience: false
+      }
     },
     errors: {}
+  }
+
+  handleFormCheckBox = ({ target: { value }}) => {
+    const offer = Object.assign({}, this.state.farmer.offer, { [value]: !this.state.farmer.offer[value]});
+
+    const farmer = Object.assign({}, this.state.farmer, { offer });
+
+    this.setState({ farmer });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -42,6 +54,7 @@ class FarmersNew extends React.Component {
         handleSubmit={this.handleSubmit}
         farmer={this.state.farmer}
         errors={this.state.errors}
+        handleFormCheckBox={this.handleFormCheckBox}
       />
     );
   }

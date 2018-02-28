@@ -23,8 +23,8 @@ class FarmersShow extends Component {
         <p><em>Looking for: £{this.state.farmer.target}</em></p>
         <p><em>We are offering:</em></p>
         <ul>
-          {this.state.farmer.offer && this.state.farmer.offer.map((o, i) =>
-            <li key={i}>{o}</li>
+          {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) =>
+            <li key={i}>{[keyName]}</li>
           )}
         </ul>
         {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}

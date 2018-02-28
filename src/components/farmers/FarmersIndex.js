@@ -23,11 +23,11 @@ class FarmersIndex extends Component {
               <img src={farmer.image} className="img-responsive" alt={farmer.name}/>
             </Link>
             <h3><strong>{farmer.name}</strong></h3>
-            <p>Looking for: {farmer.looking} donors</p>
+            <p>Looking for: £{farmer.target} worth of donations</p>
             <p>Offers: </p>
             <ul>
-              {farmer.offer.map((o, i) =>
-                <li key={i}>{o}</li>
+              {Object.keys(farmer.offer).map((keyName, i) =>
+                <li key={i}>{[keyName]}</li>
               )}
             </ul>
 
