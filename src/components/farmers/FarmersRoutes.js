@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // import ProtectedRoute from '../utility/ProtectedRoute';
 
+
 import FarmersIndex from './FarmersIndex';
 import FarmersShow from  './FarmersShow';
 import FarmersNew from './FarmersNew';
@@ -15,7 +16,7 @@ const FarmersRoutes = () => {
       <Route path="/farmers/new" component={FarmersNew} />
       <Route path="/farmers/:id" component={FarmersShow} />
       <Route path="/farmers" component={FarmersIndex} />
-      <Route path="/" component={FarmersHome} />
+      <Route exact path="/" component={FarmersHome}  />
       {/* <Route path="/farmers/:id/edit" component={FarmersEdit} /> */}
     </Switch>
   );

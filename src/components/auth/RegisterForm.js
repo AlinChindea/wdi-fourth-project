@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ReactFilestack from 'filestack-react';
 
-const RegisterForm = ({handleChange, handleSubmit, user}) => {
+const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => {
   return(
 
     <section className="hero">
@@ -54,12 +55,22 @@ const RegisterForm = ({handleChange, handleSubmit, user}) => {
                         className="form-control"
                       />
                     </div>
+                    <div className="form-group">
+                      <label htmlFor="image">Image</label>
+                      <br />
+                      <ReactFilestack
+                        apikey="AO99xY7O6Q56qp05Go2GFz"
+                        buttonText="Upload a photo"
+                        buttonClass="main-button"
+                        onSuccess={handleImageUpload}
+                        className="form-control"
+                      />
+                    </div>
                     <button type="submit" className="btn btn-primary btn-block">Create Account</button>
                   </form>
                   <div className="clearfix"></div>
                   <p className="content-divider center mt-4"><span>or</span></p>
                 </div>
-
                 <p className="text-center">
                   Already have an account? <Link to="/login">Login Now</Link>
                 </p>

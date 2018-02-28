@@ -9,6 +9,7 @@ class Register extends React.Component {
     user: {
       fullname: '',
       email: '',
+      image: '',
       password: '',
       passwordConfirmation: ''
     }
@@ -17,6 +18,11 @@ class Register extends React.Component {
   handleChange = ({target: {name, value}}) => {
     const user = Object.assign({}, this.state.user, { [name]: value});
     this.setState({user});
+  }
+
+  handleImageUpload = result => {
+    const food = Object.assign({}, this.state.food, { image: result.filesUploaded[0].url});
+    this.setState({ food });
   }
 
   handleSubmit = (e) => {
@@ -37,6 +43,7 @@ class Register extends React.Component {
         user={this.state.user}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleImageUpload={this.handleImageUpload}
       />
     );
   }
