@@ -5,7 +5,7 @@ const secureRoute = require('../lib/secureRoute');
 
 router.route('/farmers')
   .get(farmers.index)
-  .post(secureRoute, farmers.create);
+  .post(farmers.create);
 
 router.route('/farmers/:id')
   .get(farmers.show)
