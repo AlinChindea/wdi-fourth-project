@@ -110,6 +110,11 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                       <button disabled={formIsInvalid} className="btn btn-primary btn-block">Save</button>
                     </div>
                   </form>
+                  {farmer.image && <div className="col-md-6">
+                    <h2>Image Preview</h2>
+                    <img src={farmer.image} className="img-fluid" />
+                  </div>
+                  }
                 </div>
               </div>
             </div>

@@ -21,8 +21,8 @@ class Register extends React.Component {
   }
 
   handleImageUpload = result => {
-    const food = Object.assign({}, this.state.food, { image: result.filesUploaded[0].url});
-    this.setState({ food });
+    const user = Object.assign({}, this.state.user, { image: result.filesUploaded[0].url});
+    this.setState({ user });
   }
 
   handleSubmit = (e) => {

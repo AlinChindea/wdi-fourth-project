@@ -32,7 +32,7 @@ function farmersShow(req, res, next) {
 function farmersUpdate(req, res, next) {
 
   // filestack
-  // if(req.file) req.body.image = req.file.filename;
+  if(req.file) req.body.image = req.file.filename;
 
   Farmer
     .findById(req.params.id)

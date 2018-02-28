@@ -74,6 +74,11 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => 
                 <p className="text-center">
                   Already have an account? <Link to="/login">Login Now</Link>
                 </p>
+                {user.image && <div className="col-md-6">
+                  <h2>Image Preview</h2>
+                  <img src={user.image} className="img-fluid" />
+                </div>
+                }
               </div>
             </div>
           </div>

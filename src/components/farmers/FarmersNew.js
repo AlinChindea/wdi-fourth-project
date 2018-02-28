@@ -37,8 +37,8 @@ class FarmersNew extends React.Component {
   }
 
   handleImageUpload = result => {
-    const food = Object.assign({}, this.state.food, { image: result.filesUploaded[0].url});
-    this.setState({ food });
+    const farmer = Object.assign({}, this.state.farmer, { image: result.filesUploaded[0].url});
+    this.setState({ farmer});
   }
 
   handleSubmit = (e) => {
