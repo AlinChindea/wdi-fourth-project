@@ -15,7 +15,7 @@ const FarmersRoutes = () => {
       <Route path="/farmers/new" component={FarmersNew} />
       <Route path="/farmers/:id" component={FarmersShow} />
       <Route path="/farmers" component={FarmersIndex} />
-      <Route exact path="/" component={FarmersHome} />
+      <Route exact path="/" component={FarmersHome}  />
       {/* <Route path="/farmers/:id/edit" component={FarmersEdit} /> */}
     </Switch>
   );
