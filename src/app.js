@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './scss/style.scss';
+import 'font-awesome/css/font-awesome.css';
 import FarmersRoutes from './components/farmers/FarmersRoutes';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';

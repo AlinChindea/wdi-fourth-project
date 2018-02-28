@@ -1,15 +1,11 @@
 const mongoose   = require('mongoose');
 mongoose.Promise = require('bluebird');
-
 const { env, db } = require('../config/environment');
 const Farmer     = require('../models/farmer');
 const User = require('../models/user');
-
 User.collection.drop();
-
 mongoose.connect(db[env]);
 Farmer.collection.drop();
-
 User
   .create([{
     username: 'test',
@@ -19,7 +15,6 @@ User
   }])
   .then((users) => {
     console.log(`${users.length} users created!!`);
-
     return Farmer
       .create([{
         name: 'Farmer Joe',
@@ -36,11 +31,8 @@ User
         },
         target: 3000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.joe@fj.com',
-          number: '0123456789'
-        }
-
+        email: 'farmer.joe@fj.com',
+        number: '0123456789'
       },{
         name: 'Farmer Mary',
         image: 'https://goo.gl/pdw93Z',
@@ -56,10 +48,8 @@ User
         },
         target: 10000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.mary@fm.com',
-          number: '0123456789'
-        }
+        email: 'farmer.mary@fm.com',
+        number: '0123456789'
       },{
         name: 'Farmer Steve',
         image: 'https://goo.gl/NKw2Rq',
@@ -75,10 +65,8 @@ User
         },
         target: 20000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.steve@fs.com',
-          number: '0123456789'
-        }
+        email: 'farmer.steve@fs.com',
+        number: '0123456789'
       },{
         name: 'Farmer Alin',
         image: 'https://goo.gl/cRTdcV',
@@ -94,10 +82,8 @@ User
         },
         target: 2000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.alin@fa.com',
-          number: '0123456789'
-        }
+        email: 'farmer.alin@fa.com',
+        number: '0123456789'
       },{
         name: 'Farmer Stephanie',
         image: 'https://goo.gl/jVEuE1',
@@ -113,10 +99,8 @@ User
         },
         target: 80000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.stephanie@fs.com',
-          number: '0123456789'
-        }
+        email: 'farmer.stephanie@fs.com',
+        number: '0123456789'
       },{
         name: 'Farmer Pedro',
         image: 'https://goo.gl/xgXcYw',
@@ -132,10 +116,8 @@ User
         },
         target: 50000,
         sponsor: users[0],
-        contact: {
-          email: 'farmer.pedro@fp.com',
-          number: '0123456789'
-        }
+        email: 'farmer.pedro@fp.com',
+        number: '0123456789'
       }]);
   })
   .then(farmers => console.log(`${farmers.length} farmers created!`))
