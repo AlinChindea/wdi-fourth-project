@@ -8,7 +8,7 @@ const farmerSchema = mongoose.Schema({
     lng: Number
   },
   story: { type: String, required: 'Please provide a brief story' },
-  offer: {type: String, required: 'Please choose what you offer in exchange'},
+  offer: {type: Array, required: 'Please choose what you offer in exchange'},
   target: {type: Number, required: 'Please add your required funding target'},
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
   contact: {

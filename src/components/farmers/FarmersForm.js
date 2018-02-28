@@ -48,13 +48,13 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors }) {
             {errors.story && <p className="alert alert-warning" role="alert">{errors.story}</p>}
           </div>
           <div className="form-group">
-            <label htmlFor="looking">Donor needed</label>
+            <label htmlFor="sponsor">Sponsor</label>
             <input
               type="text"
               className="form-control"
-              id="looking"
-              name="looking"
-              value={farmer.looking}
+              id="sponsor"
+              name="sponsor"
+              value={farmer.sponsor}
               onChange={handleChange}
             />
             {errors.looking && <p className="alert alert-warning" role="alert">{errors.looking}</p>}

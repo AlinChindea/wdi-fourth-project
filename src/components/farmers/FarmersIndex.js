@@ -24,7 +24,10 @@ class FarmersIndex extends Component {
             </Link>
             <h3><strong>{farmer.name}</strong></h3>
             <p>Looking for: {farmer.looking} donors</p>
-            <p>Offers {farmer.offer}</p>
+            <p>Offers: </p>
+            {farmer.offer.map((o, i) =>
+              <p key={i}>{o}</p>
+            )}
           </div>
 
         )}
