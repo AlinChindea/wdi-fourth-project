@@ -36,6 +36,11 @@ class FarmersNew extends React.Component {
     this.setState({ farmer, errors });
   }
 
+  handleImageUpload = result => {
+    const food = Object.assign({}, this.state.food, { image: result.filesUploaded[0].url});
+    this.setState({ food });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -59,6 +64,7 @@ class FarmersNew extends React.Component {
         farmer={this.state.farmer}
         errors={this.state.errors}
         handleFormCheckBox={this.handleFormCheckBox}
+        handleImageUpload={this.handleImageUpload}
       />
     );
   }

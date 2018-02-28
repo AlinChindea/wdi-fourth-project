@@ -1,15 +1,11 @@
 const mongoose   = require('mongoose');
 mongoose.Promise = require('bluebird');
-
 const { env, db } = require('../config/environment');
 const Farmer     = require('../models/farmer');
 const User = require('../models/user');
-
 User.collection.drop();
-
 mongoose.connect(db[env]);
 Farmer.collection.drop();
-
 User
   .create([{
     username: 'test',
@@ -19,7 +15,6 @@ User
   }])
   .then((users) => {
     console.log(`${users.length} users created!!`);
-
     return Farmer
       .create([{
         name: 'Farmer Joe',
