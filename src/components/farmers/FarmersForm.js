@@ -60,18 +60,15 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors }) {
             {errors.looking && <p className="alert alert-warning" role="alert">{errors.looking}</p>}
           </div>
           <div className="form-group">
-            <label htmlFor="looking">Farmer offer</label>
-            <select
-              className="form-control"
-              id="offer"
-              name="offer"
-              value={farmer.offer}
-              onChange={handleChange}
-            >
-              <option value="" disabled>Please select</option>
-              <option>Produce</option>
-              <option>Weekend hosting</option>
-            </select>
+            <label htmlFor="looking">Farmer offers:</label>
+            <br />
+            Produce <input type="checkbox" name="Produce" value="" />
+            <br />
+            Weekend Stay <input type="checkbox" name="Weekend Stay" value="" />
+            <br />
+            Farm Experiences <input type="checkbox" name="Farm Experiences" value="" />
+            <br />
+
           </div>
           {errors.offer && <p className="alert alert-warning" role="alert">{errors.offer}</p>}
           <div>
