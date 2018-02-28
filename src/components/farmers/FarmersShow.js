@@ -40,7 +40,7 @@ class FarmersShow extends Component {
 
             <br />
             <button className="btn btn-primary">
-              <Link to={`/farmer/${this.state.farmer.id}/edit`} >
+              <Link to={`/farmers/${this.state.farmer.id}/edit`} >
                 <h4>Edit</h4>
               </Link>
             </button>
