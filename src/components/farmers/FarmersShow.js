@@ -39,14 +39,21 @@ class FarmersShow extends Component {
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
 
             <br />
-            <button className="btn btn-primary">
-              <Link to={`/farmers/${this.state.farmer.id}/edit`} >
-                <h4>Edit</h4>
-              </Link>
-            </button>
-            <button className="btn btn-primary" onClick={this.deleteFarmer}>
-              <h4>Delete</h4>
-            </button>
+            <div className="row">
+              <div className="col-md-3">
+                <button className="btn btn-primary">
+                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+                  </Link>
+                </button>
+              </div>
+              <div className="col-md-3">
+                <button className="btn btn-primary" onClick={this.deleteFarmer}>
+                  <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
