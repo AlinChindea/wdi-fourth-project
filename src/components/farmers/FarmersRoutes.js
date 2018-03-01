@@ -17,7 +17,7 @@ const FarmersRoutes = () => {
       <Route path="/farmers/:id/edit" component={FarmersEdit} />
       <Route path="/farmers/new" component={FarmersNew} />
       <Route path="/farmers/:id" component={FarmersShow} />
-      <Route path="/users/:id" />
+      <Route path="/users/:id" component={UserProfile}/>
       <Route path="/farmers" component={FarmersIndex} />
       <Route exact path="/" component={FarmersHome}  />
 
