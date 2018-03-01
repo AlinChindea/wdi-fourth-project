@@ -15,6 +15,9 @@ const navBar = () => {
             <Link to="/farmers" className="nav-link">Farmers <span className="sr-only">(current)</span></Link>
           </li>
           <li className="nav-item">
+            <Link to="/farmers/new" className="nav-link">Add New Farmer</Link>
+          </li>
+          <li className="nav-item">
             <Link to="/register" className="nav-link">Register</Link>
           </li>
           <li className="nav-item">
