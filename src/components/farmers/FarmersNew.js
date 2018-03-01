@@ -17,7 +17,8 @@ class FarmersNew extends React.Component {
         farmExperience: false
       },
       email: '',
-      number: ''
+      number: '',
+      farmerTrue: true
     },
     errors: {}
   }
@@ -43,9 +44,7 @@ class FarmersNew extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(this.state.farmer);
-
     Axios
       .post('/api/farmers', this.state.farmer, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
@@ -65,6 +64,7 @@ class FarmersNew extends React.Component {
         errors={this.state.errors}
         handleFormCheckBox={this.handleFormCheckBox}
         handleImageUpload={this.handleImageUpload}
+        handleFormFarmerCheckBox={this.handleFormFarmerCheckBox}
       />
     );
   }

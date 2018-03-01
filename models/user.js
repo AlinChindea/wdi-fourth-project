@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   adopted: {type: Array},
-  image: {type: String}
+  image: {type: String},
+  farmerTrue: {type: Boolean, required: true}
 });
 
 userSchema.set('toJSON', {
