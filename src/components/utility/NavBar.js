@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
-const navBar = (user) => {
+const navBar = () => {
   return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" className="navbar-brand">Farmers Friends</Link>
@@ -14,23 +14,30 @@ const navBar = (user) => {
           <li className="nav-item active">
             <Link to="/farmers" className="nav-link">Farmers <span className="sr-only">(current)</span></Link>
           </li>
+          {Auth.isAuthenticated() && <li className="nav-item">
+            <Link to="/farmers/new" className="nav-link">Add New Farmer</Link>
+          </li>
+          }
           <li className="nav-item">
             <Link to="/farmers/new" className="nav-link">Add New Farmer</Link>
           </li>
-          <li className="nav-item">
+          {!Auth.isAuthenticated() && <li className="nav-item">
             <Link to="/register" className="nav-link">Register</Link>
           </li>
-          <li className="nav-item">
+          }
+          {!Auth.isAuthenticated() && <li className="nav-item">
             <Link to="/login" className="nav-link">Login</Link>
           </li>
-          {user && <li className="nav-item">
-            <Link to={`/users/${user.user.id}`} className="nav-link">Profile</Link>
+          }
+          {Auth.isAuthenticated() && <li className="nav-item">
+            <Link to={`/users/${Auth.getPayload().userId}`} className="nav-link">Profile</Link>
           </li>
           }
 
-          <li className="nav-item">
+          {Auth.isAuthenticated() &&<li className="nav-item">
             <Link to="/farmers" className="nav-link" onClick={Auth.logout}>Logout</Link>
           </li>
+          }
         </ul>
       </div>
     </nav>
