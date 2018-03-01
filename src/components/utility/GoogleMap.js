@@ -3,6 +3,10 @@
 import React from 'react';
 
 class GoogleMap extends React.Component {
+  state = {
+    distance: null,
+    duration: null
+  }
 
   componentDidMount() {
     this.bounds = new google.maps.LatLngBounds();
@@ -21,8 +25,7 @@ class GoogleMap extends React.Component {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        console.log('location found');
-
+        // console.log('location found');
 
         const pos = {
           lat: position.coords.latitude,
@@ -46,11 +49,10 @@ class GoogleMap extends React.Component {
   }
 
   drawRoute = () => {
-    console.log('the route can now be drawn');
-
     this.directionsService  = new google.maps.DirectionsService;
     const directionsDisplay  = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(this.map);
+    this.distanceCalculator = new google.maps.DistanceMatrixService;
 
     this.directionsService.route({
       origin: this.farmMarker.getPosition(),
@@ -58,12 +60,22 @@ class GoogleMap extends React.Component {
       travelMode: 'DRIVING'
     }, function(response, status) {
       status === 'OK' ? directionsDisplay.setDirections(response) : window.alert('Directions request failed due to ' + status);
+    });
 
+    this.distanceCalculator.getDistanceMatrix({
+      origins: [this.farmMarker.getPosition()],
+      destinations: [this.userMarker.getPosition()],
+      travelMode: 'DRIVING',
+      unitSystem: google.maps.UnitSystem.METRIC
+    }, response => {
+      const distance = response.rows[0].elements[0].distance.text;
+      const duration = response.rows[0].elements[0].duration.text;
+
+      this.setState({ distance, duration });
     });
   }
 
   componentWillUnmount() {
-    // this.marker.setMap(null);
     this.userMarker = null;
     this.farmMarker = null;
     this.map = null;
@@ -71,7 +83,11 @@ class GoogleMap extends React.Component {
 
   render() {
     return (
-      <div className="google-map" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
+      <React.Fragment>
+        <div className="google-map" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
+        { this.state.duration && <p>{ this.state.duration }</p>}
+        { this.state.distance && <p>{ this.state.distance }</p>}
+      </React.Fragment>
     );
   }
 }
