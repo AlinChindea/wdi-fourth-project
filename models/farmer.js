@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const farmerSchema = mongoose.Schema({
   name: { type: String, required: 'Please provide a name'},
   image: { type: String, required: 'Please upload an image' },
+  address: { type: String, required: 'Please provide a valid address.'  },
   location: {
-    lat: Number,
-    lng: Number
+    lat: {type: Number},
+    lng: {type: Number}
   },
   story: { type: String, required: 'Please provide a brief story' },
   offer: {

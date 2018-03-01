@@ -20,6 +20,7 @@ User
       .create([{
         name: 'Farmer Joe',
         image: 'https://goo.gl/YVsycK',
+        address: '18 Coder Avenue',
         location: {
           lat: 50.331685,
           lng: -4.520443
@@ -38,6 +39,7 @@ User
       },{
         name: 'Farmer Mary',
         image: 'https://goo.gl/pdw93Z',
+        address: '18 Coder Avenue',
         location: {
           lat: 50.990888,
           lng: -4.479449
@@ -56,6 +58,7 @@ User
       },{
         name: 'Farmer Steve',
         image: 'https://goo.gl/NKw2Rq',
+        address: '18 Coder Avenue',
         location: {
           lat: 51.230881,
           lng: 1.133622
@@ -74,6 +77,7 @@ User
       },{
         name: 'Farmer Alin',
         image: 'https://goo.gl/cRTdcV',
+        address: '18 Coder Avenue',
         location: {
           lat: 51.770782,
           lng: -1.790823
@@ -92,6 +96,7 @@ User
       },{
         name: 'Farmer Stephanie',
         image: 'https://goo.gl/jVEuE1',
+        address: '18 Coder Avenue',
         location: {
           lat: 52.453836,
           lng: -1.629428
@@ -110,6 +115,7 @@ User
       },{
         name: 'Farmer Pedro',
         image: 'https://goo.gl/xgXcYw',
+        address: '18 Coder Avenue',
         location: {
           lat: 54.910443,
           lng: -0.994911

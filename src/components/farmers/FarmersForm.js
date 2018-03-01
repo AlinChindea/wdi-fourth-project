@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactFilestack from 'filestack-react';
 import BackButton from '../utility/BackButton';
+import GoogleAutocomplete from '../utility/GoogleAutocomplete';
 
-function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload }) {
+function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng }) {
   const formIsInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <section className="hero">
@@ -39,6 +40,20 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           className="form-control"
                         />
                         {errors.image && <p className="alert alert-warning" role="alert">{errors.image}</p>}
+                      </div>
+                      <GoogleAutocomplete setLatLng={setLatLng} className="form-control"/>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          readOnly="readonly"
+                          className="form-control"
+                          id="address"
+                          name="address"
+                          placeholder="Address"
+                          value={farmer.address}
+                          onChange={handleChange}
+                        />
+                        {errors.address && <p className="alert alert-warning" role="alert">{errors.address}</p>}
                       </div>
                       <div className="form-group">
                         <input
