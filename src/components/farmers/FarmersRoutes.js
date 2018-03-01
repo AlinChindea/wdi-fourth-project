@@ -9,6 +9,7 @@ import FarmersShow from  './FarmersShow';
 import FarmersNew from './FarmersNew';
 import FarmersHome from './FarmersHome';
 import FarmersEdit from './FarmersEdit';
+import UserProfile from '../user/UserProfile';
 
 const FarmersRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const FarmersRoutes = () => {
       <Route path="/farmers/:id/edit" component={FarmersEdit} />
       <Route path="/farmers/new" component={FarmersNew} />
       <Route path="/farmers/:id" component={FarmersShow} />
+      <Route path="/users/:id" />
       <Route path="/farmers" component={FarmersIndex} />
       <Route exact path="/" component={FarmersHome}  />
 
