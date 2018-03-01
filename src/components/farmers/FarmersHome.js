@@ -29,6 +29,7 @@ const FarmersHome = () => {
             <Modal />
           </div>
         </div>
+        
         <div className="col-4">
           <div className="card">
             <Link to="/login"><img className="card-img-top" src="https://goo.gl/UBNMkn" alt="tractors in field" />

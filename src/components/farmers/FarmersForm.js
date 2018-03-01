@@ -41,7 +41,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                         />
                         {errors.image && <p className="alert alert-warning" role="alert">{errors.image}</p>}
                       </div>
-                      <GoogleAutocomplete setLatLng={setLatLng} className="form-control"/>
+                      <GoogleAutocomplete setLatLng={setLatLng} />
                       <div className="form-group">
                         <input
                           type="text"
@@ -114,7 +114,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                         { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
                       </div>
                       <div>
-                        <button disabled={formIsInvalid} className="save-button">Save</button>
+                        <button disabled={formIsInvalid} className="btn btn-primary float-right">Save</button>
                       </div>
                     </form>
                     { farmer.image && <div className="col-md-6">
