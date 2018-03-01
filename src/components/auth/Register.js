@@ -11,7 +11,8 @@ class Register extends React.Component {
       email: '',
       image: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      farmerTrue: false
     }
   };
 
