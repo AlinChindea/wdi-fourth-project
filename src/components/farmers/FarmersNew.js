@@ -9,6 +9,11 @@ class FarmersNew extends React.Component {
     farmer: {
       name: '',
       image: '',
+      address: '',
+      location: {
+        lat: '',
+        lng: ''
+      },
       story: '',
       target: '',
       offer: {
@@ -21,6 +26,17 @@ class FarmersNew extends React.Component {
       farmerTrue: true
     },
     errors: {}
+  }
+
+  setLatLng = (place) => {
+    console.log(place);
+    const googleData = {
+      address: place.formatted_address,
+      location: place.geometry.location.toJSON()
+    };
+    const farmer = Object.assign({}, this.state.farmer, googleData);
+    const errors = Object.assign({}, this.state.errors, { location: '', address: '' });
+    this.setState({ farmer, errors }, () => console.log('updated farmer', this.state.farmer));
   }
 
   handleFormCheckBox = ({ target: { value }}) => {
@@ -65,6 +81,7 @@ class FarmersNew extends React.Component {
         handleFormCheckBox={this.handleFormCheckBox}
         handleImageUpload={this.handleImageUpload}
         handleFormFarmerCheckBox={this.handleFormFarmerCheckBox}
+        setLatLng={this.setLatLng}
       />
     );
   }

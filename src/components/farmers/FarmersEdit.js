@@ -10,6 +10,11 @@ class FarmersEdit extends React.Component {
     farmer: {
       name: '',
       image: '',
+      address: '',
+      location: {
+        lat: '',
+        lng: ''
+      },
       story: '',
       target: '',
       offer: {
@@ -28,6 +33,18 @@ class FarmersEdit extends React.Component {
       .get(`/api/farmers/${this.props.match.params.id}`)
       .then(res => this.setState({ farmer: res.data}))
       .catch(err => console.log(err));
+  }
+
+  setLatLng = (place) => {
+    console.log(place);
+    console.log('location log', place.geometry.location.toJSON());
+    const googleData = {
+      address: place.formatted_address,
+      location: place.geometry.location.toJSON()
+    };
+
+    const farmer = Object.assign({}, this.state.farmer, googleData);
+    this.setState({ farmer }, () => console.log(this.state.farmer));
   }
 
   handleChange = ({ target: { name, value } }) => {
