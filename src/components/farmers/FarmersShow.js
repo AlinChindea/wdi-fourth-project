@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
+import GoogleMap from '../utility/GoogleMap';
+
 class FarmersShow extends Component {
   state = {
-    farmer: {}
+    farmer: {},
+    center: {
+      lat: null,
+      lng: null
+    }
   }
 
   deleteFarmer = () => {
@@ -17,7 +23,7 @@ class FarmersShow extends Component {
   componentWillMount() {
     Axios
       .get(`/api/farmers/${this.props.match.params.id}`)
-      .then(res => this.setState({ farmer: res.data}))
+      .then(res => this.setState({ farmer: res.data, center: {lat: res.data.location.lat, lng: res.data.location.lng}}))
       .catch(err => console.log(err));
   }
 
@@ -50,6 +56,11 @@ class FarmersShow extends Component {
                 <button className="btn btn-primary" onClick={this.deleteFarmer}>
                   <i className="fa fa-trash" aria-hidden="true"></i>
                 </button>
+              </div>
+              <div className="col-md-6">
+                {!this.state.center.lat && <h1>map loading...</h1>}
+                {this.state.center.lat &&
+            <GoogleMap center={this.state.center}/>}
               </div>
             </div>
 
