@@ -2,7 +2,7 @@ const router = require('express').Router();
 const farmers = require('../controllers/farmers');
 const auth = require('../controllers/auth');
 const users = require('../controllers/users');
-// const secureRoute = require('../lib/secureRoute');
+const secureRoute = require('../lib/secureRoute');
 
 router.route('/farmers')
   .get(farmers.index)
@@ -18,6 +18,9 @@ router.route('/register')
 
 router.route('/login')
   .post(auth.login);
+
+router.route('/users/adopt')
+  .put(secureRoute, users.adopt);
 
 router.route('/users/:id')
   .get(users.show);

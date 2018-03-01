@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 import GoogleMap from '../utility/GoogleMap';
+import Auth from '../../lib/Auth';
 
 class FarmersShow extends Component {
   state = {
@@ -10,7 +11,8 @@ class FarmersShow extends Component {
     center: {
       lat: null,
       lng: null
-    }
+    },
+    user: {}
   }
 
   deleteFarmer = () => {
@@ -18,6 +20,12 @@ class FarmersShow extends Component {
       .delete(`/api/farmers/${this.props.match.params.id}`)
       .then(() => this.props.history.push('/farmers'))
       .catch(err => console.log(err));
+  }
+
+  adoptFarmer = () => {
+    Axios
+      .put('/api/users/adopt', { farmerId: this.state.farmer.id }, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
+      .then(res => this.setState({ user: res.data }));
   }
 
   componentWillMount() {
@@ -63,8 +71,11 @@ class FarmersShow extends Component {
             <GoogleMap center={this.state.center}/>}
               </div>
             </div>
-
-
+            <div className="col-md-3">
+              <button className="btn btn-primary" onClick={this.adoptFarmer}>
+                <p>ADOPT!</p>
+              </button>
+            </div>
           </div>
         </div>
 

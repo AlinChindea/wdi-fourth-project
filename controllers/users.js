@@ -12,6 +12,25 @@ function usersShow(req, res, next) {
     })
     .catch(next);
 }
+
+function usersAdopt(req, res, next) {
+  const currentUser = req.currentUser.id;
+
+  User
+    .findById(currentUser)
+    .exec()
+    .then((user) => {
+
+      user.adopted.push(req.body.farmerId);
+      return user.save({ validateBeforeSave: false });
+    })
+    .then(user => {
+      res.json(user);
+    })
+    .catch(next);
+}
+
 module.exports = {
-  show: usersShow
+  show: usersShow,
+  adopt: usersAdopt
 };
