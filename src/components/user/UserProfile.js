@@ -32,6 +32,9 @@ class UserProfile extends Component {
               </li>
             </ul>
             <div className="tab-content py-4">
+              {this.state.user.adopted && this.state.user.adopted.map((farmerId, i) => {
+                return <p key={i}>{farmerId}</p>;
+              })}
               <div className="tab-pane active" id="profile">
                 <h5 className="mb-3">User Profile</h5>
                 <div className="row">

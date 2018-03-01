@@ -25,7 +25,7 @@ class FarmersShow extends Component {
   adoptFarmer = () => {
     Axios
       .put('/api/users/adopt', { farmerId: this.state.farmer.id }, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
-      .then(res => this.setState({ user: res.data }));
+      .then(res => this.setState({ user: res.data }, () => console.log(this.state.user)));
   }
 
   componentWillMount() {
