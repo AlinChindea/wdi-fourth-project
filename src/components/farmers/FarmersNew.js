@@ -36,7 +36,7 @@ class FarmersNew extends React.Component {
     };
     const farmer = Object.assign({}, this.state.farmer, googleData);
     const errors = Object.assign({}, this.state.errors, { location: '', address: '' });
-    this.setState({ farmer, errors }, () => console.log('updated farmer', this.state.farmer));
+    this.setState({ farmer, errors });
   }
 
   handleFormCheckBox = ({ target: { value }}) => {

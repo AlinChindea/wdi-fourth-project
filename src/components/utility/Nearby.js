@@ -8,7 +8,7 @@ class Nearby extends React.Component {
     this.bounds = new google.maps.LatLngBounds();
     this.map = new google.maps.Map(this.mapCanvas, {
       center: this.userMarker,
-      zoom: 14
+      zoom: 10
     });
 
     if (navigator.geolocation) {
@@ -33,11 +33,16 @@ class Nearby extends React.Component {
       });
     }
 
-    // this.marker = new google.maps.Marker({
-    //   map: this.map,
-    //   position: this.props.center,
-    //   animation: google.maps.Animation.DROP
-    // });
+    this.cityCircle = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: this.map,
+      center: this.userMarker,
+      radius: 50
+    });
   }
   componentWillUnmount() {
     // this.marker.setMap(null);

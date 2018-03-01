@@ -14,7 +14,7 @@ const farmerSchema = mongoose.Schema({
     weekendStay: {type: Boolean, required: 'Please choose what you offer in exchange'},
     farmExperience: {type: Boolean, required: 'Please choose what you offer in exchange'}
   },
-  target: {type: String, required: 'Please add your required funding target'},
+  target: {type: Number, required: 'Please add your required funding target'},
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
   email: {type: String, required: true},
   number: {type: String, required: true},
