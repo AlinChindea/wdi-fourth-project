@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
-const navBar = () => {
+const navBar = (user) => {
   return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" className="navbar-brand">Farmers Friends</Link>
@@ -23,6 +23,11 @@ const navBar = () => {
           <li className="nav-item">
             <Link to="/login" className="nav-link">Login</Link>
           </li>
+          {user && <li className="nav-item">
+            <Link to={`/users/${user.user.id}`} className="nav-link">Profile</Link>
+          </li>
+          }
+
           <li className="nav-item">
             <Link to="/farmers" className="nav-link" onClick={Auth.logout}>Logout</Link>
           </li>

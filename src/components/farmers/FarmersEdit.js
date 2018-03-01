@@ -36,15 +36,13 @@ class FarmersEdit extends React.Component {
   }
 
   setLatLng = (place) => {
-    console.log(place);
-    console.log('location log', place.geometry.location.toJSON());
     const googleData = {
       address: place.formatted_address,
       location: place.geometry.location.toJSON()
     };
 
     const farmer = Object.assign({}, this.state.farmer, googleData);
-    this.setState({ farmer }, () => console.log(this.state.farmer));
+    this.setState({ farmer });
   }
 
   handleChange = ({ target: { name, value } }) => {

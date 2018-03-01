@@ -25,7 +25,6 @@ class GoogleMap extends React.Component {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        // console.log('location found');
 
         const pos = {
           lat: position.coords.latitude,
