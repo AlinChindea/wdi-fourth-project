@@ -19,7 +19,6 @@ class FarmersNearby extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-10">
-            <h1>Map with nearby farmers goes here</h1>
             {this.state.farmers.length !== 0 &&
             <Nearby
               farmers={this.state.farmers}
