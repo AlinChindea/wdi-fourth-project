@@ -30,7 +30,13 @@ class FarmersShow extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
+
+    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value });
+
+    const farmer = Object.assign({}, this.state.farmer, { sponsored });
+
+    this.setState({ farmer }, () => console.log(this.state.farmer));
+
   }
 
   componentWillMount() {
@@ -85,7 +91,7 @@ class FarmersShow extends Component {
         </div>
         <div className="row">
           <DonationBox
-            user={this.state.user}
+            farmer={this.state.farmer}
             handleChange={this.handleChange}
           />
         </div>

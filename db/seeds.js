@@ -31,6 +31,11 @@ User
           weekendStay: true,
           farmExperience: false
         },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
+        },
         target: 3000,
         sponsor: users[0],
         email: 'farmer.joe@fj.com',
@@ -49,6 +54,11 @@ User
           produce: true,
           weekendStay: false,
           farmExperience: false
+        },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
         },
         target: 10000,
         sponsor: users[0],
@@ -69,6 +79,11 @@ User
           weekendStay: true,
           farmExperience: false
         },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
+        },
         target: 20000,
         sponsor: users[0],
         email: 'farmer.steve@fs.com',
@@ -87,6 +102,11 @@ User
           produce: true,
           weekendStay: true,
           farmExperience: true
+        },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
         },
         target: 2000,
         sponsor: users[0],
@@ -107,6 +127,11 @@ User
           weekendStay: true,
           farmExperience: false
         },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
+        },
         target: 80000,
         sponsor: users[0],
         email: 'farmer.stephanie@fs.com',
@@ -125,6 +150,11 @@ User
           produce: true,
           weekendStay: true,
           farmExperience: false
+        },
+        sponsored: {
+          userId: '',
+          donationAmount: '',
+          product: ''
         },
         target: 50000,
         sponsor: users[0],
