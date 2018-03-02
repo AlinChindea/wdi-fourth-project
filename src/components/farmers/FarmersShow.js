@@ -33,15 +33,6 @@ class FarmersShow extends Component {
     console.log(e.target.value);
   }
 
-  handleFormCheckBox = ({ target: { value }}) => {
-    console.log(value);
-    // const offer = Object.assign({}, this.state.farmer.offer, { [value]: !this.state.farmer.offer[value]});
-    //
-    // const farmer = Object.assign({}, this.state.farmer, { offer });
-    //
-    // this.setState({ farmer });
-  }
-
   componentWillMount() {
     Axios
       .get(`/api/farmers/${this.props.match.params.id}`)
@@ -95,7 +86,7 @@ class FarmersShow extends Component {
         <div className="row">
           <DonationBox
             user={this.state.user}
-            handleFormCheckBox={this.handleFormCheckBox}
+            handleChange={this.handleChange}
           />
         </div>
       </div>
