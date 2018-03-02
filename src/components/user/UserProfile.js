@@ -4,7 +4,8 @@ import Auth from '../../lib/Auth';
 
 class UserProfile extends Component {
   state = {
-    user: {}
+    user: {},
+    farmers: []
   }
 
   componentWillMount() {
@@ -15,26 +16,36 @@ class UserProfile extends Component {
       .catch(err => console.log(err));
   }
 
+  componentDidMount() {
+    Axios
+      .get('/api/farmers')
+      .then(res => {
+        console.log('all farmers', res.data);
+        const filteredFarmers = res.data.filter(farmer => this.state.user.adopted.some(adoptedFarmerId => farmer.id === adoptedFarmerId));
+        this.setState({farmers: filteredFarmers},() => console.log(this.state));
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return(
       <div className="container">
+
         <div className="row my-2">
           <div className="col-lg-8 order-lg-2">
             <ul className="nav nav-tabs">
               <li className="nav-item">
-                <a href="" data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
+                <a data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
               </li>
               <li className="nav-item">
-                <a href="" data-target="#messages" data-toggle="tab" className="nav-link">Messages</a>
+                <a data-target="#messages" data-toggle="tab" className="nav-link">Messages</a>
               </li>
               <li className="nav-item">
-                <a href="" data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
+                <a data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
               </li>
             </ul>
             <div className="tab-content py-4">
-              {this.state.user.adopted && this.state.user.adopted.map((farmerId, i) => {
-                return <p key={i}>{farmerId}</p>;
-              })}
+
               <div className="tab-pane active" id="profile">
                 <h5 className="mb-3">User Profile</h5>
                 <div className="row">
@@ -49,6 +60,11 @@ class UserProfile extends Component {
                       Indie music, skiing and hiking. I love the great outdoors.
                     </p>
                   </div>
+                  <ul>
+                    {this.state.farmers && this.state.farmers.map((farmer, i) => {
+                      return(<li key={i}>{farmer.name}</li>);
+                    })}
+                  </ul>
                   <div className="col-md-6">
                     <h6>Recent badges</h6>
                     <a href="#" className="badge badge-dark badge-pill">html5</a>
@@ -60,9 +76,6 @@ class UserProfile extends Component {
                     <a href="#" className="badge badge-dark badge-pill">bootstrap</a>
                     <a href="#" className="badge badge-dark badge-pill">responsive-design</a>
                     <hr />
-                    <span className="badge badge-primary"><i className="fa fa-user"></i> 900 Followers</span>
-                    <span className="badge badge-success"><i className="fa fa-cog"></i> 43 Forks</span>
-                    <span className="badge badge-danger"><i className="fa fa-eye"></i> 245 Views</span>
                   </div>
                   <div className="col-md-12">
                     <h5 className="mt-2"><span className="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
@@ -138,86 +151,78 @@ class UserProfile extends Component {
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">First name</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="text" value="Jane" />
+                      <input className="form-control" type="text" value="Jane" readOnly />
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Last name</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="text" value="Bishop" />
+                      <input className="form-control" type="text" value="Bishop" readOnly/>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Email</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="email" value="email@gmail.com" />
+                      <input className="form-control" type="email" value="email@gmail.com" readOnly/>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Company</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="text" value="" />
+                      <input className="form-control" type="text" />
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Website</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="url" value="" />
+                      <input className="form-control" type="url" />
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Address</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="text" value="" placeholder="Street" />
+                      <input className="form-control" type="text" placeholder="Street" />
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label"></label>
                     <div className="col-lg-6">
-                      <input className="form-control" type="text" value="" placeholder="City" />
+                      <input className="form-control" type="text" placeholder="City" />
                     </div>
                     <div className="col-lg-3">
-                      <input className="form-control" type="text" value="" placeholder="State" />
+                      <input className="form-control" type="text" placeholder="State" />
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Time Zone</label>
                     <div className="col-lg-9">
                       <select id="user_time_zone" className="form-control" size="0">
-                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                        <option value="Alaska">(GMT-09:00) Alaska</option>
-                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                        <option value="Arizona">(GMT-07:00) Arizona</option>
-                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
                       </select>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Username</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="text" value="janeuser" />
+                      <input className="form-control" type="text" value="janeuser" readOnly/>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Password</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="password" value="11111122333" />
+                      <input className="form-control" type="password" value="11111122333" readOnly/>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">Confirm password</label>
                     <div className="col-lg-9">
-                      <input className="form-control" type="password" value="11111122333" />
+                      <input className="form-control" type="password" value="11111122333" readOnly/>
                     </div>
                   </div>
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label"></label>
                     <div className="col-lg-9">
-                      <input type="reset" className="btn btn-secondary" value="Cancel" />
-                      <input type="button" className="btn btn-primary" value="Save Changes" />
+                      <input type="reset" className="btn btn-secondary" value="Cancel" readOnly/>
+                      <input type="button" className="btn btn-primary" value="Save Changes" readOnly/>
                     </div>
                   </div>
                 </form>
