@@ -7,17 +7,21 @@ class Nearby extends React.Component {
   componentDidMount() {
     this.bounds = new google.maps.LatLngBounds();
     this.map = new google.maps.Map(this.mapCanvas, {
-      center: this.userMarker,
+      center: {lat: 51.509865, lng: -0.118092},
       zoom: 10
     });
 
-    // this.farmMarker = new google.maps.Marker({
-    //   map: this.map,
-    //   position: this.props.center,
-    //   animation: google.maps.Animation.DROP
-    // });
-    //
-    // this.bounds.extend(this.farmMarker.getPosition());
+    this.props.farmers.forEach( (farmer, index) => {
+      const farmerIcon = '../assets/farmer.png';
+      this[`farmMarker${index}`] = new google.maps.Marker({
+        map: this.map,
+        position: farmer.location,
+        icon: farmerIcon,
+        animation: google.maps.Animation.DROP
+      });
+      this.bounds.extend(this[`farmMarker${index}`].getPosition());
+    });
+
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -26,11 +30,15 @@ class Nearby extends React.Component {
           lng: position.coords.longitude
         };
 
+        const image = '../assets/man.png';
         this.userMarker = new google.maps.Marker({
           map: this.map,
           position: pos,
+          icon: image,
           animation: google.maps.Animation.DROP
         });
+
+        this.map.setCenter(pos);
 
         this.farmerCircle = new google.maps.Circle({
           strokeColor: '#FF0000',
@@ -57,6 +65,8 @@ class Nearby extends React.Component {
   }
 
   render() {
+    // console.log('farmers inside Nearby', this.props.farmers);
+
     return (
       <div className="googlemap" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
     );

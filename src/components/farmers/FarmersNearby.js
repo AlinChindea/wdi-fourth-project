@@ -5,17 +5,13 @@ import Nearby from '../utility/Nearby';
 
 class FarmersNearby extends React.Component {
   state = {
-    farmer: {},
-    center: {
-      lat: null,
-      lng: null
-    }
+    farmers: []
   }
   componentWillMount() {
     Axios
-      .get(`/api/farmers/${this.props.match.params.id}`)
-      .then(res => console.log(res));
-    // .catch(err => console.log(err));
+      .get('/api/farmers')
+      .then(res => this.setState({ farmers: res.data }))
+      .catch(err => console.log(err));
   }
   render() {
 
@@ -24,9 +20,10 @@ class FarmersNearby extends React.Component {
         <div className="row">
           <div className="col-md-10">
             <h1>Map with nearby farmers goes here</h1>
-            {this.state.center.lat && <h1>map loading...</h1>}
-            {!this.state.center.lat &&
-        <Nearby center={this.state.center}/>}
+            {this.state.farmers.length !== 0 &&
+            <Nearby
+              farmers={this.state.farmers}
+            />}
           </div>
         </div>
       </div>
