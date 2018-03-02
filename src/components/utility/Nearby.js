@@ -11,6 +11,14 @@ class Nearby extends React.Component {
       zoom: 10
     });
 
+    // this.farmMarker = new google.maps.Marker({
+    //   map: this.map,
+    //   position: this.props.center,
+    //   animation: google.maps.Animation.DROP
+    // });
+    //
+    // this.bounds.extend(this.farmMarker.getPosition());
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const pos = {
@@ -24,25 +32,23 @@ class Nearby extends React.Component {
           animation: google.maps.Animation.DROP
         });
 
+        this.farmerCircle = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
+          map: this.map,
+          center: this.userMarker.getPosition(),
+          radius: 25000
+        });
+
         this.bounds.extend(this.userMarker.getPosition());
         this.map.fitBounds(this.bounds);
-
-        if (this.userMarker && this.farmMarker) {
-          this.drawRoute();
-        }
       });
     }
 
-    this.cityCircle = new google.maps.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      map: this.map,
-      center: this.userMarker,
-      radius: 50
-    });
+
   }
   componentWillUnmount() {
     // this.marker.setMap(null);
