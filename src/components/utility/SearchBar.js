@@ -15,11 +15,10 @@ const SearchBar = ({ handleSort, handleSearch }) => {
       </div>
       <div className="col-md-6">
         <form className="form-inline my-2 my-lg-0">
-          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={handleSearch}/>
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={handleSearch} />
         </form>
       </div>
     </div>
-
   );
 };
 
