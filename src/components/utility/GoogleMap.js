@@ -25,7 +25,6 @@ class GoogleMap extends React.Component {
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -54,16 +53,16 @@ class GoogleMap extends React.Component {
     this.distanceCalculator = new google.maps.DistanceMatrixService;
 
     this.directionsService.route({
-      origin: this.farmMarker.getPosition(),
-      destination: this.userMarker.getPosition(),
+      origin: this.userMarker.getPosition(),
+      destination: this.farmMarker.getPosition(),
       travelMode: 'DRIVING'
     }, function(response, status) {
       status === 'OK' ? directionsDisplay.setDirections(response) : window.alert('Directions request failed due to ' + status);
     });
 
     this.distanceCalculator.getDistanceMatrix({
-      origins: [this.farmMarker.getPosition()],
-      destinations: [this.userMarker.getPosition()],
+      origins: [this.userMarker.getPosition()],
+      destinations: [this.farmMarker.getPosition()],
       travelMode: 'DRIVING',
       unitSystem: google.maps.UnitSystem.METRIC
     }, response => {

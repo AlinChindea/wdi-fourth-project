@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import SearchBar from '../utility/SearchBar';
 
+
 class FarmersIndex extends Component {
   state = {
     farmers: [],
@@ -16,7 +17,7 @@ class FarmersIndex extends Component {
   componentWillMount() {
     Axios
       .get('/api/farmers')
-      .then(res => this.setState({ farmers: res.data }))
+      .then(res => this.setState({ farmers: res.data}))
       .catch(err => console.log(err));
   }
 
@@ -40,35 +41,39 @@ class FarmersIndex extends Component {
   render() {
     const farmers = this.sortingAndFiltering();
     return(
-      <div className="container">
-        <SearchBar
-          handleSort={this.handleSort}
-          handleSearch={this.handleSearch}
-        />
-        <div className="row">
-          {farmers.map(farmer =>
-            <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
-              <div className="card border-none">
-                <div className="card-body">
-                  <div className="mt-4">
-                    <Link to={`/farmers/${farmer.id}`}>
-                      <h3><strong>{farmer.name}</strong></h3>
-                      <img src={farmer.image} className="img-fluid"/>
-                    </Link>
-                    <p>Looking for: £{farmer.target} worth of donations</p>
-                    <p>Offers: </p>
-                    <ul>
-                      {Object.keys(farmer.offer).map((keyName, i) =>
-                        <li key={i}>{[keyName]}</li>
-                      )}
-                    </ul>
+      <React.Fragment>
+        <div className="container">
+          <SearchBar
+            handleSort={this.handleSort}
+            handleSearch={this.handleSearch}
+          />
+          <div className="row">
+            {farmers.map(farmer =>
+              <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
+
+                <div className="card border-none">
+                  <div className="card-body">
+                    <div className="mt-4">
+                      <Link to={`/farmers/${farmer.id}`}>
+                        <h3><strong>{farmer.name}</strong></h3>
+                        <img src={farmer.image} className="img-fluid"/>
+                      </Link>
+                      <p>Looking for: £{farmer.target} worth of donations</p>
+                      <p>Offers: </p>
+                      <ul>
+                        {Object.keys(farmer.offer).map((keyName, i) =>
+                          <li key={i}>{[keyName]}</li>
+                        )}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
+
+      </React.Fragment>
     );
   }
 }
