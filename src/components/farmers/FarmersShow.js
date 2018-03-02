@@ -4,6 +4,7 @@ import Axios from 'axios';
 
 import GoogleMap from '../utility/GoogleMap';
 import Auth from '../../lib/Auth';
+import DonationBox from './DonationBox';
 
 class FarmersShow extends Component {
   state = {
@@ -26,6 +27,19 @@ class FarmersShow extends Component {
     Axios
       .put('/api/users/adopt', { farmerId: this.state.farmer.id }, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
       .then(res => this.setState({ user: res.data }));
+  }
+
+  handleChange = (e) => {
+    console.log(e.target.value);
+  }
+
+  handleFormCheckBox = ({ target: { value }}) => {
+    console.log(value);
+    // const offer = Object.assign({}, this.state.farmer.offer, { [value]: !this.state.farmer.offer[value]});
+    //
+    // const farmer = Object.assign({}, this.state.farmer, { offer });
+    //
+    // this.setState({ farmer });
   }
 
   componentWillMount() {
@@ -78,9 +92,13 @@ class FarmersShow extends Component {
             </div>
           </div>
         </div>
-
+        <div className="row">
+          <DonationBox
+            user={this.state.user}
+            handleFormCheckBox={this.handleFormCheckBox}
+          />
+        </div>
       </div>
-
     );
   }
 }

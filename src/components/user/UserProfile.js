@@ -20,9 +20,8 @@ class UserProfile extends Component {
     Axios
       .get('/api/farmers')
       .then(res => {
-        console.log('all farmers', res.data);
         const filteredFarmers = res.data.filter(farmer => this.state.user.adopted.some(adoptedFarmerId => farmer.id === adoptedFarmerId));
-        this.setState({farmers: filteredFarmers},() => console.log(this.state));
+        this.setState({farmers: filteredFarmers});
       })
       .catch(err => console.log(err));
   }
