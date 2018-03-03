@@ -1,6 +1,7 @@
 import React    from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import './scss/style.scss';
 import 'font-awesome/css/font-awesome.css';
@@ -18,10 +19,16 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <NavBar props={this.state}/>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <FarmersRoutes />
+          <header>
+            <NavBar props={this.state}/>
+            <Link to="/" className="text-center"> <img src='../assets/tractor-logo.png' className="tractor-logo" /></Link>
+
+          </header>
+          <main>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <FarmersRoutes />
+          </main>
         </div>
       </Router>
 

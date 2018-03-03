@@ -43,11 +43,6 @@ body {
   font-size: 1.15em;
 }
 
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
 /* Wrapper for item list */
 .bm-item-list a {
   color: #b8b7ad;
@@ -68,6 +63,22 @@ body {
 
 .googlemap {
   height: 100vh;
+}
+
+header {
+  background: transparent;
+}
+
+.tractor-logo {
+  position: relative;
+  top: -5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  font-size: 60px;
+  color: #eee;
+  background: #fff;
+  padding: 0 30px;
 }
 
 
