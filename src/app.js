@@ -1,7 +1,6 @@
 import React    from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Axios from 'axios';
 
 import './scss/style.scss';
 import 'font-awesome/css/font-awesome.css';
@@ -20,7 +19,6 @@ class App extends React.Component {
       <Router>
         <div>
           <NavBar props={this.state}/>
-          <h1>Farmers Friends</h1>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <FarmersRoutes />
