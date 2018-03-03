@@ -1,10 +1,10 @@
 import React from 'react';
 
-const DonationBox = ({ farmer, handleChange }) => {
+const DonationBox = ({ farmer, handleChange, handleSubmit }) => {
   // console.log(farmer.sponsored);
   return (
     <div className="col-md-6 offset-md-3">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="looking">Farmer offers:</label>
           <br />
@@ -36,6 +36,9 @@ const DonationBox = ({ farmer, handleChange }) => {
             <option name="donationAmount" value="200">£200</option>
           </select>
           }
+        </div>
+        <div>
+          <button className="btn btn-primary">Save</button>
         </div>
       </form>
     </div>

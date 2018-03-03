@@ -35,8 +35,17 @@ class FarmersShow extends Component {
 
     const farmer = Object.assign({}, this.state.farmer, { sponsored });
 
-    this.setState({ farmer }, () => console.log(this.state.farmer));
+    this.setState({ farmer });
+  }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    Axios
+      .post('/api/farmers', this.state.farmer)
+      .then(res => console.log(res))
+
+      // this.props.history.push('/'))
+      .catch(err => console.log(err));
   }
 
   componentWillMount() {
@@ -93,6 +102,7 @@ class FarmersShow extends Component {
           <DonationBox
             farmer={this.state.farmer}
             handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
           />
         </div>
       </div>
