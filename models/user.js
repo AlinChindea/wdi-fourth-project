@@ -6,11 +6,6 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   adopted: {type: Array},
-  sponsored: {
-    farmerId: {Type: String},
-    donationAmount: {Type: Number},
-    product: {Type: String}
-  },
   image: {type: String},
   farmerTrue: {type: Boolean, required: true}
 });
