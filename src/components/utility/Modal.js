@@ -10,30 +10,36 @@ const Modal = () => {
     </div>} modal position="top center" closeOnDocumentClick>
       {close => (
         <div className="container">
-          <h3 className="text-center">How it works
+          <h3 className="text-center modal-title">How it works
             <a className="close" onClick={close}>
           &times;
             </a>
           </h3>
           <div className="row justify-content-md-center">
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/id-card.png' />
               <p>1. We identify farmers around major cities</p>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/farmer-registration.png' />
               <p>2. They register.</p>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/showcase.png' />
               <p>3. We showcase their work</p>
             </div>
           </div>
           <div className="row justify-content-md-center">
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/browsing.png' />
               <p>4. You browse farmers around you</p>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/selection.png' />
               <p>5. You adopt a farmer, committing to buy from them or enjoy other benefits</p>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-3 text-center">
+              <img src='../assets/discussion.png' />
               <p>6. You connect with the farmer</p>
             </div>
           </div>
