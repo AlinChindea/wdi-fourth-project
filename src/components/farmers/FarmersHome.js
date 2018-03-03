@@ -5,40 +5,51 @@ import Modal from '../utility/Modal';
 
 const FarmersHome = () => {
   return(
-    <div className="container">
-      <div className="row">
-        <div className="col-4">
-          <div className="card">
-            <Link to="/farmers"><img className="card-img-top" src="https://goo.gl/UBNMkn" alt="tractors in field" /></Link>
-            <h3>Find a farmer</h3>
+    <section className="hero">
+      <div className="container">
+        <div className="row justify-content-around">
+          <div className="col-4 grow">
+            <div className="card">
+              <Link to="/farmers"><div className="card-body text-center">
+                <img className="cardIcon" src='../assets/find-on-map.png' />
+                <h4>Find a farmer</h4>
+              </div>
+              </Link>
+            </div>
+          </div>
+
+          <div className="col-4 grow">
+            <div className="card">
+              <Link to="/farmers/new"><div className="card-body text-center">
+                <img className="cardIcon" src='../assets/recommendation.png' />
+                <h4>Refer a farmer</h4>
+              </div>
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="col-4">
-          <div className="card">
-            <Link to="/farmers/new"><img className="card-img-top" src="https://goo.gl/UBNMkn" alt="tractors in field" /></Link>
-            <h3>Refer a farmer</h3>
+        <div className="w-100"></div>
 
+        <div className="row justify-content-around">
+          <div className="col-4 grow">
+            <div className="card">
+              <Modal />
+            </div>
+          </div>
+
+          <div className="col-4 grow">
+            <div className="card">
+              <Link to="/login"><div className="card-body text-center">
+                <img className="cardIcon" src='../assets/registration.png' />
+                <h4>Sign in/Sign up</h4>
+              </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="row">
-        <div className="col-4">
-          <div className="card">
-            <Modal />
-          </div>
-        </div>
-        
-        <div className="col-4">
-          <div className="card">
-            <Link to="/login"><img className="card-img-top" src="https://goo.gl/UBNMkn" alt="tractors in field" />
-            </Link>
-            <h3>Login/Register</h3>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

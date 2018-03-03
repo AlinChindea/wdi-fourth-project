@@ -28,7 +28,7 @@ class Nearby extends React.Component {
           map: this.map,
           position: pos,
           icon: image,
-          animation: google.maps.Animation.DROP
+          animation: google.maps.Animation.BOUNCE
         });
 
         this.map.setCenter(pos);
@@ -57,12 +57,9 @@ class Nearby extends React.Component {
             return {farmers: [...prevState, farmer]};
           }, () => {
             this.state.farmers.forEach( (farmer, index) => {
-              // const infowindow = new google.maps.InfoWindow({
-              //   content: 'Hi, I am a farmer'
-              // });
-
-
-
+              const infowindow = new google.maps.InfoWindow({
+                content: 'Hi, I am a farmer'
+              });
               const farmerIcon = '../assets/farmer.png';
               this[`farmMarker${index}`] = new google.maps.Marker({
                 map: this.map,
@@ -70,11 +67,12 @@ class Nearby extends React.Component {
                 icon: farmerIcon,
                 animation: google.maps.Animation.DROP
               });
-              // this[`farmMarker${index}`].addListener('click', function() {
-              //   infowindow.open(this.map, this[`farmMarker${index}`]);
-              // });
+              this[`farmMarker${index}`].addListener('click', function() {
+                infowindow.open(this.map, this[`farmMarker${index}`]);
+              });
               this.bounds.extend(this[`farmMarker${index}`].getPosition());
               this.map.fitBounds(this.bounds);
+              this.map.setZoom(8);
             });
           });
         });

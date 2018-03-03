@@ -29,7 +29,7 @@ class FarmersNew extends React.Component {
   }
 
   setLatLng = (place) => {
-    console.log(place);
+
     const googleData = {
       address: place.formatted_address,
       location: place.geometry.location.toJSON()

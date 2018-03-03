@@ -30,6 +30,7 @@ class GoogleMap extends React.Component {
           lng: position.coords.longitude
         };
 
+
         this.userMarker = new google.maps.Marker({
           map: this.map,
           position: pos,
