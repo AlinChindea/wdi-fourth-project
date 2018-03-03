@@ -8,21 +8,21 @@ const FarmersHome = () => {
     <section className="hero">
       <div className="container">
         <div className="row justify-content-around">
-          <div className="col-4">
-            <div className="card border-none">
+          <div className="col-4 grow">
+            <div className="card">
               <Link to="/farmers"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/find-on-map.png' />
-                <h3>Find a farmer</h3>
+                <h4>Find a farmer</h4>
               </div>
               </Link>
             </div>
           </div>
 
-          <div className="col-4">
+          <div className="col-4 grow">
             <div className="card">
               <Link to="/farmers/new"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/recommendation.png' />
-                <h3>Refer a farmer</h3>
+                <h4>Refer a farmer</h4>
               </div>
               </Link>
             </div>
@@ -32,17 +32,17 @@ const FarmersHome = () => {
         <div className="w-100"></div>
 
         <div className="row justify-content-around">
-          <div className="col-4">
+          <div className="col-4 grow">
             <div className="card">
               <Modal />
             </div>
           </div>
 
-          <div className="col-4">
+          <div className="col-4 grow">
             <div className="card">
               <Link to="/login"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/registration.png' />
-                <h3>Sign in/Sign up</h3>
+                <h4>Sign in/Sign up</h4>
               </div>
               </Link>
             </div>
