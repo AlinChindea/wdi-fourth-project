@@ -70,14 +70,14 @@ a, .col-sm-3 {
 }
 
 .grow {
-transition: 1s ease;
+transition: .2s ease-in-out;
 }
 
 .grow :hover{
 -webkit-transform: scale(1.2);
 -ms-transform: scale(1.2);
 transform: scale(1.2);
-transition: 1s ease;
+transition: .2s ease-in-out;
 }
 
 
