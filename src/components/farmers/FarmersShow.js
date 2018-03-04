@@ -78,46 +78,34 @@ class FarmersShow extends Component {
               )}
             </ul>
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
+            {Auth.isAuthenticated() &&
+              <div className="col-md-3">
+                <button className="btn btn-primary" onClick={this.adoptFarmer}>
+                  <p>ADOPT!</p>
+                </button>
+                <DonationBox
+                  farmer={this.state.farmer}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              </div>
+            }
+            {!Auth.isAuthenticated() &&
+              <Link to="/register">
+                <div className="col-md-3">
+                  <button className="btn btn-primary">
+                    <p>Please Register/Sign In To Adopt or Donate {this.state.farmer.name}</p>
+                  </button>
+                </div>
+              </Link>
+            }
           </div>
+
           <div className="col-7">
             {!this.state.center.lat && <h1>map loading...</h1>}
             {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
           </div>
-        </div>
-        {Auth.isAuthenticated() &&
-            <div className="col-md-3">
-              <button className="btn btn-primary" onClick={this.adoptFarmer}>
-                <p>ADOPT!</p>
-              </button>
-            </div>
-        }
-        {!Auth.isAuthenticated() &&
-          <Link to="/register">
-            <div className="col-md-3">
-              <button className="btn btn-primary">
-                <p>Please Register/Sign In To Adopt {this.state.farmer.name}</p>
-              </button>
-            </div>
-          </Link>
-        }
-        <div className="row">
-          {Auth.isAuthenticated() &&
-              <DonationBox
-                farmer={this.state.farmer}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-              />
-          }
-          {!Auth.isAuthenticated() &&
-            <Link to="/register">
-              <div className="col-md-3">
-                <button className="btn btn-primary">
-                  <p>Please Register/Sign In To Donate {this.state.farmer.name}</p>
-                </button>
-              </div>
-            </Link>
-          }
         </div>
       </div>
     );
