@@ -223,9 +223,10 @@ a:hover {
     background-color: #ff5722 !important;
     border-color: #ff5722 !important;
 }
-.btn-primary:hover, .btn-primary:focus{
+.btn-primary:hover, .btn-primary:focus, .btn-outline-warning:hover {
     color: #fff !important;
 }
+
 .form-group {
     margin-bottom: 1.5rem;
 }
