@@ -2,10 +2,13 @@
 
 import React from 'react';
 
+
 class GoogleMap extends React.Component {
+
   state = {
     distance: null,
-    duration: null
+    duration: null,
+    show: true
   }
 
   componentDidMount() {
@@ -65,7 +68,7 @@ class GoogleMap extends React.Component {
       origins: [this.userMarker.getPosition()],
       destinations: [this.farmMarker.getPosition()],
       travelMode: 'DRIVING',
-      unitSystem: google.maps.UnitSystem.METRIC
+      unitSystem: google.maps.UnitSystem.IMPERIAL
     }, response => {
       const distance = response.rows[0].elements[0].distance.text;
       const duration = response.rows[0].elements[0].duration.text;
@@ -73,6 +76,15 @@ class GoogleMap extends React.Component {
       this.setState({ distance, duration });
     });
   }
+
+  handleAlertDismiss = () => {
+    this.setState({ show: true });
+  }
+
+  handleAlertShow = () => {
+    this.setState({ show: false });
+  }
+
 
   componentWillUnmount() {
     this.userMarker = null;
@@ -84,8 +96,14 @@ class GoogleMap extends React.Component {
     return (
       <React.Fragment>
         <div className="google-map" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
-        { this.state.duration && <p>{ this.state.duration }</p>}
-        { this.state.distance && <p>{ this.state.distance }</p>}
+        {!this.state.show &&
+          <div className="alert alert-primary" role="alert">
+            {this.state.distance && <p> This farmer is { this.state.distance } away.</p>}
+            { this.state.duration && <p>You can drive there in { this.state.duration }.</p>}
+            <button className="btn btn-outline-danger btn-sm" onClick={this.handleAlertDismiss}>Hide info</button>
+          </div>}
+        {this.state.show &&
+            <button className="btn btn-outline-primary btn-sm" onClick={this.handleAlertShow}>Show distance</button>}
       </React.Fragment>
     );
   }

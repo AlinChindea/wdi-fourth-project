@@ -18,17 +18,12 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <header>
-            <NavBar props={this.state}/>
-            <Link to="/" className="text-center"> <img src='../assets/tractor-logo.png' className="tractor-logo" /></Link>
-
-          </header>
-          <main>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <FarmersRoutes />
-          </main>
+        <div >
+          <NavBar props={this.state}/>
+          <Link to="/" className="text-center"> <img src='../assets/tractor-logo.png' className="tractor-logo" /></Link>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <FarmersRoutes />
         </div>
       </Router>
 

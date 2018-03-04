@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+// import {Nav, NavItem} from 'react-bootstrap';
 
 import GoogleMap from '../utility/GoogleMap';
 import Auth from '../../lib/Auth';
 import DonationBox from './DonationBox';
+
 
 class FarmersShow extends Component {
   state = {
@@ -59,7 +61,7 @@ class FarmersShow extends Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="col-md-6 offset-md-3">
+          <div className="col-md-5">
             <img src={this.state.farmer.image} className="img-fluid"/>
             <h3><strong>{this.state.farmer.name}</strong></h3>
             <p><em>{this.state.farmer.story}</em></p>
@@ -71,33 +73,33 @@ class FarmersShow extends Component {
               )}
             </ul>
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
-
-            <br />
-            <div className="row">
-              <div className="col-md-3">
-                <button className="btn btn-primary">
-                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
-                  </Link>
-                </button>
-              </div>
-              <div className="col-md-3">
-                <button className="btn btn-primary" onClick={this.deleteFarmer}>
-                  <i className="fa fa-trash" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div className="col-md-6">
-                {!this.state.center.lat && <h1>map loading...</h1>}
-                {this.state.center.lat &&
+          </div>
+          <div className="col-7">
+            {!this.state.center.lat && <h1>map loading...</h1>}
+            {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
-              </div>
-            </div>
-            <div className="col-md-3">
-              <button className="btn btn-primary" onClick={this.adoptFarmer}>
-                <p>ADOPT!</p>
-              </button>
-            </div>
           </div>
         </div>
+        <br />
+        <div className="row">
+          <div className="col-md-3">
+            <button className="btn btn-primary">
+              <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+              </Link>
+            </button>
+          </div>
+          <div className="col-md-3">
+            <button className="btn btn-primary" onClick={this.deleteFarmer}>
+              <i className="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div className="col-md-3">
+            <button className="btn btn-primary" onClick={this.adoptFarmer}>
+              <p>ADOPT!</p>
+            </button>
+          </div>
+        </div>
+
         <div className="row">
           <DonationBox
             farmer={this.state.farmer}

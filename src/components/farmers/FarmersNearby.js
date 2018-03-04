@@ -18,7 +18,7 @@ class FarmersNearby extends React.Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="col-md-10">
+          <div className="col">
             {this.state.farmers.length !== 0 &&
             <Nearby
               farmers={this.state.farmers}
