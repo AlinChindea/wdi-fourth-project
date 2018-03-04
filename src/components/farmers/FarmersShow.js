@@ -35,18 +35,23 @@ class FarmersShow extends Component {
 
     const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value });
 
-    const farmer = Object.assign({}, this.state.farmer, { sponsored });
+    const farmer = Object.assign({}, this.state.farmer, {sponsored});
 
     this.setState({ farmer });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const sponsored = Object.assign({}, this.state.farmer.sponsored, { userId: Auth.getPayload().userId });
+
+    const farmer = Object.assign({}, this.state.farmer, { sponsored });
+
+    this.setState({ farmer });
+
     Axios
       .post('/api/farmers', this.state.farmer)
-      .then(res => console.log(res))
-
-      // this.props.history.push('/'))
+      .then(res => console.log(res.data))
       .catch(err => console.log(err));
   }
 
