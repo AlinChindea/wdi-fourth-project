@@ -103,17 +103,36 @@ class FarmersShow extends Component {
               </button>
             </div>
             }
+            {!Auth.isAuthenticated() &&
+            <Link to="/register">
+              <div className="col-md-3">
+                <button className="btn btn-primary">
+                  <p>Please Register/Sign In To Adopt {this.state.farmer.name}</p>
+                </button>
+              </div>
+            </Link>
+            }
+            <div className="row">
+              {Auth.isAuthenticated() &&
+              <DonationBox
+                farmer={this.state.farmer}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+              }
+              {!Auth.isAuthenticated() &&
+                <Link to="/register">
+                  <div className="col-md-3">
+                    <button className="btn btn-primary">
+                      <p>Please Register/Sign In To Donate {this.state.farmer.name}</p>
+                    </button>
+                  </div>
+                </Link>
+              }
+            </div>
           </div>
         </div>
-        <div className="row">
-          {Auth.isAuthenticated() &&
-          <DonationBox
-            farmer={this.state.farmer}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-          }
-        </div>
+
       </div>
     );
   }
