@@ -32,7 +32,7 @@ const FarmersHome = () => {
         <div className="w-100"></div>
 
         <div className="row justify-content-around">
-          <div className="col-md-4 grow">
+          <div className="col-md-4">
             <div className="card">
               <Modal />
             </div>
