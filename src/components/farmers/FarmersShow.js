@@ -48,7 +48,7 @@ class FarmersShow extends Component {
     this.setState({ farmer });
 
     Axios
-      .post('/api/farmers', this.state.farmer)
+      .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
   }
