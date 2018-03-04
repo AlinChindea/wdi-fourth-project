@@ -96,19 +96,23 @@ class FarmersShow extends Component {
             <GoogleMap center={this.state.center}/>}
               </div>
             </div>
+            {Auth.isAuthenticated() &&
             <div className="col-md-3">
               <button className="btn btn-primary" onClick={this.adoptFarmer}>
                 <p>ADOPT!</p>
               </button>
             </div>
+            }
           </div>
         </div>
         <div className="row">
+          {Auth.isAuthenticated() &&
           <DonationBox
             farmer={this.state.farmer}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
           />
+          }
         </div>
       </div>
     );
