@@ -81,6 +81,17 @@ header {
   padding: 0 30px;
 }
 
+// index page Styling
+.input-group-text {
+  color: #ff5722;
+  background-color: #fff;
+  border: 1px solid #ff5722;
+}
+
+input[type="search"] {
+  border-color: #ff5722;
+}
+
 
 a, .col-sm-3, .col-7 {
   color: black;
@@ -144,8 +155,6 @@ overflow: hidden;
 transform: scale(1.1);
 transition: .2s ease-in-out;
 }
-
-
 
 .modal-title {
   color: black;
