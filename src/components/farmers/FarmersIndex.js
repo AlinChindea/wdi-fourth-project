@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import Auth from '../../lib/Auth';
 
 import SearchBar from '../utility/SearchBar';
 
@@ -43,10 +44,11 @@ class FarmersIndex extends Component {
     return(
       <React.Fragment>
         <div className="container">
+          { Auth.isAuthenticated() &&
           <SearchBar
             handleSort={this.handleSort}
             handleSearch={this.handleSearch}
-          />
+          />}
           <div className="row">
             {farmers.map(farmer =>
               <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
