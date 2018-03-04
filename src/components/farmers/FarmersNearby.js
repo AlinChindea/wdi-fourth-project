@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 
+
 import Nearby from '../utility/Nearby';
 
 class FarmersNearby extends React.Component {
@@ -18,7 +19,7 @@ class FarmersNearby extends React.Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="col-md-10">
+          <div className="col">
             {this.state.farmers.length !== 0 &&
             <Nearby
               farmers={this.state.farmers}

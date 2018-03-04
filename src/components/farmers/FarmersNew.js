@@ -60,7 +60,6 @@ class FarmersNew extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.farmer);
     Axios
       .post('/api/farmers', this.state.farmer, {
         headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
