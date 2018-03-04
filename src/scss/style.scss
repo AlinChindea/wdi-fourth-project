@@ -88,7 +88,7 @@ header {
   border: 1px solid #ff5722;
 }
 
-input[type="search"] {
+input[type="search"], .btn-outline-warning {
   border-color: #ff5722;
 }
 
@@ -161,7 +161,7 @@ transform: scale(1.1);
 transition: .2s ease-in-out;
 }
 
-.modal-title {
+.modal-title, .btn-outline-warning {
   color: black;
 }
 
@@ -219,7 +219,7 @@ a:hover {
 .btn:hover, .btn:focus {
     box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.15);
 }
-.btn-primary{
+.btn-primary {
     background-color: #ff5722 !important;
     border-color: #ff5722 !important;
 }

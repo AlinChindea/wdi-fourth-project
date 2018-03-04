@@ -5,7 +5,7 @@ const SearchBar = ({ handleSort, handleSearch }) => {
   return(
     <div className="row">
       <div className="col-md-4">
-        <Link to="farmers/nearby"><button className="btn btn-primary">Find a  farmer near you</button></Link>
+        <Link to="farmers/nearby"><button className="btn btn-outline-warning btn-block">Find a  farmer near you</button></Link>
       </div>
       <div className="input-group col-md-4">
         <select className="form-control" onChange={handleSort}>
