@@ -131,12 +131,13 @@ a, .col-sm-3 {
 
 .grow {
 transition: .2s ease-in-out;
+overflow: hidden;
 }
 
 .grow :hover{
--webkit-transform: scale(1.2);
--ms-transform: scale(1.2);
-transform: scale(1.2);
+-webkit-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1);
 transition: .2s ease-in-out;
 }
 

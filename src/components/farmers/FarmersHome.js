@@ -8,7 +8,7 @@ const FarmersHome = () => {
     <section className="hero">
       <div className="container">
         <div className="row justify-content-around">
-          <div className="col-4 grow">
+          <div className="col-md-4 col-sm-12 grow">
             <div className="card">
               <Link to="/farmers"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/find-on-map.png' />
@@ -18,7 +18,7 @@ const FarmersHome = () => {
             </div>
           </div>
 
-          <div className="col-4 grow">
+          <div className="col-md-4 col-sm-12 grow">
             <div className="card">
               <Link to="/farmers/new"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/recommendation.png' />
@@ -32,13 +32,13 @@ const FarmersHome = () => {
         <div className="w-100"></div>
 
         <div className="row justify-content-around">
-          <div className="col-4 grow">
+          <div className="col-md-4 col-sm-12 grow">
             <div className="card">
               <Modal />
             </div>
           </div>
 
-          <div className="col-4 grow">
+          <div className="col-md-4 col-sm-12 grow">
             <div className="card">
               <Link to="/login"><div className="card-body text-center">
                 <img className="cardIcon" src='../assets/registration.png' />
