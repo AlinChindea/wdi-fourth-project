@@ -92,6 +92,11 @@ input[type="search"] {
   border-color: #ff5722;
 }
 
+select.form-control:not([size]):not([multiple]) {
+  height: 45px;
+  border-color: #ff5722;
+}
+
 
 a, .col-sm-3, .col-7 {
   color: black;
