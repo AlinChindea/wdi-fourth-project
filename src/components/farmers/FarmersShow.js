@@ -50,7 +50,7 @@ class FarmersShow extends Component {
     this.setState({ farmer });
 
     Axios
-      .post('/api/farmers', this.state.farmer)
+      .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
   }
@@ -85,6 +85,8 @@ class FarmersShow extends Component {
             <GoogleMap center={this.state.center}/>}
           </div>
         </div>
+
+
         <br />
         <div className="row">
           <div className="col-md-3">
@@ -98,19 +100,23 @@ class FarmersShow extends Component {
               <i className="fa fa-trash" aria-hidden="true"></i>
             </button>
           </div>
+          {Auth.isAuthenticated() &&
           <div className="col-md-3">
             <button className="btn btn-primary" onClick={this.adoptFarmer}>
               <p>ADOPT!</p>
             </button>
           </div>
+          }
         </div>
 
         <div className="row">
+          {Auth.isAuthenticated() &&
           <DonationBox
             farmer={this.state.farmer}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
           />
+          }
         </div>
       </div>
     );

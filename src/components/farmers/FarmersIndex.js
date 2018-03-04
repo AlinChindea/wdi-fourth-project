@@ -57,7 +57,7 @@ class FarmersIndex extends Component {
                   <div className="card-body">
                     <div className="mt-4">
                       <Link to={`/farmers/${farmer.id}`}>
-                        <h3><strong>{farmer.name}</strong></h3>
+                        <h3 className="index-names"><strong>{farmer.name}</strong></h3>
                         <img src={farmer.image} className="img-fluid"/>
                       </Link>
                       <p>Looking for: £{farmer.target} worth of donations</p>
