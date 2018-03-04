@@ -21,8 +21,8 @@ const farmerSchema = mongoose.Schema({
   },
   target: {type: Number, required: 'Please add your required funding target'},
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
-  email: {type: String, required: true},
-  number: {type: String, required: true},
+  email: {type: String, required: 'Please provide an email'},
+  number: {type: String, required: 'Please provide a phone number'},
   farmerTrue: {type: Boolean, required: true}
 });
 

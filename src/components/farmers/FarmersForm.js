@@ -99,7 +99,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.email}
                           onChange={handleChange}
                         />
-                        { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
+                        { errors.email && <p className="alert alert-warning" role="alert">{errors.email}</p>}
                       </div>
                       <div className="form-group">
                         <label htmlFor="name">Number</label>
@@ -111,7 +111,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.number}
                           onChange={handleChange}
                         />
-                        { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
+                        { errors.number && <p className="alert alert-warning" role="alert">{errors.number}</p>}
                       </div>
                       <div>
                         <button disabled={formIsInvalid} className="btn btn-primary float-right">Save</button>
