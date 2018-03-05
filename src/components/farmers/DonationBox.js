@@ -37,7 +37,7 @@ const DonationBox = ({ farmer, handleChange, handleSubmit }) => {
         }
       </div>
       <div>
-        <button className="btn btn-primary show-btn-add">Save</button>
+        <button className="btn btn-primary show-btn-add btn-block">Save</button>
       </div>
     </form>
 

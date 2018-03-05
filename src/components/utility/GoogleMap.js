@@ -102,8 +102,9 @@ class GoogleMap extends React.Component {
             { this.state.duration && <p>You can drive there in { this.state.duration }.</p>}
             <button className="btn btn-outline-danger btn-sm" onClick={this.handleAlertDismiss}>Hide info</button>
           </div>}
+        <br />
         {this.state.show &&
-            <button className="btn btn-outline-primary btn-sm" onClick={this.handleAlertShow}>Show distance</button>}
+            <button className="btn btn-outline-primary btn-sm show-distance-btn" onClick={this.handleAlertShow}>Show distance</button>}
       </React.Fragment>
     );
   }
