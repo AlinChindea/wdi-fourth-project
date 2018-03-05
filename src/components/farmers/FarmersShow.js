@@ -8,6 +8,7 @@ import BackButton from '../utility/BackButton';
 import Auth from '../../lib/Auth';
 import DonationBox from './DonationBox';
 import DonationTotal from './DonationTotal';
+import CommentsForm from '../utility/CommentsForm';
 
 
 class FarmersShow extends Component {
@@ -21,6 +22,9 @@ class FarmersShow extends Component {
     newDonation: {
       donationAmount: '',
       product: ''
+    },
+    newComment: {
+      content: ''
     }
   }
 
@@ -75,7 +79,45 @@ class FarmersShow extends Component {
     return this.state.user.adopted && this.state.user.adopted.includes(this.props.match.params.id);
   }
 
+  deleteComment = (id) => {
+    Axios
+      .delete(`/api/farmers/${this.props.match.params.id}/comments/${id}`,
+        {
+          headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
+        })
+      .then(() => {
+        const comments = this.state.farmer.comments.filter(comment => comment._id !== id);
+
+
+        const farmer = Object.assign({}, this.state.farmer, { comments });
+        this.setState({ farmer });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleCommentChange = ({ target: { value }}) => {
+    this.setState({ newComment: { content: value }});
+  }
+
+  handleCommentSubmit = e => {
+    e.preventDefault();
+    Axios
+      .post(`/api/farmers/${this.state.farmer.id}/comments`, this.state.newComment,
+        {
+          headers: { 'Authorization': `Bearer ${Auth.getToken()}`}
+        })
+      .then((res) => {
+        const farmer = Object.assign({}, this.state.farmer, { comments: this.state.farmer.comments.concat(res.data) });
+        this.setState({ farmer, newComment: { content: '' } });
+      })
+      .catch(err => this.setState({ errors: err.response.data.errors }));
+  }
+
   render() {
+    console.log(this.state.farmer);
+
+    let isCurrentUsers = null;
+    if (Auth.isAuthenticated() && this.state.farmer.createdBy) isCurrentUsers = Auth.getPayload().userId === this.state.farmer.createdBy.id;
     return(
       <div className="container">
         <div className="row">
@@ -91,17 +133,17 @@ class FarmersShow extends Component {
             <h3><strong>{this.state.farmer.name}</strong></h3>
             <div className="row">
               <div className="col-5 offset-1">
+                {this.state.farmer.id && isCurrentUsers &&
                 <button className="btn btn-success btn-sm btn-block">
-                  {this.state.farmer.id &&
                   <Link to={`/farmers/${this.state.farmer.id}/edit`}><i className="fa fa-pencil" aria-hidden="true"></i>
                   </Link>
-                  }
-                </button>
+                </button>}
               </div>
               <div className="col-5">
+                {this.state.farmer.id && isCurrentUsers &&
                 <button className="btn btn-danger btn-sm btn-block" onClick={this.deleteFarmer}>
                   <i className="fa fa-trash" aria-hidden="true"></i>
-                </button>
+                </button>}
               </div>
             </div>
             <br />
