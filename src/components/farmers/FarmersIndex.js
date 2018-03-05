@@ -59,12 +59,12 @@ class FarmersIndex extends Component {
             <br />
             <div className="row">
               {farmers.map(farmer =>
-                <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
+                <div key={farmer.id} className="col-md-6 mx-auto">
                   <div className="card border-none">
                     <div className="card-body">
                       <div className="mt-4">
                         <Link to={`/farmers/${farmer.id}`}>
-                          <h4 className="index-names"><strong>{farmer.name}</strong></h4>
+                          <h5 className="index-names"><strong>{farmer.name}</strong></h5>
                           <img src={farmer.image} className="img-fluid index-image"/>
                         </Link>
                         <p>Looking for: £{farmer.target} worth of donations</p>
