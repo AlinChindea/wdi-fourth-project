@@ -62,6 +62,8 @@ class FarmersShow extends Component {
   }
 
   componentDidMount() {
+    if (!Auth.isAuthenticated()) return false;
+
     Axios
       .get(`/api/users/${Auth.getPayload().userId}`)
       .then(res => this.setState({user: res.data}))
@@ -69,7 +71,6 @@ class FarmersShow extends Component {
   }
 
   userHasAdopted = () => {
-    console.log(this.state.user);
     return this.state.user.adopted && this.state.user.adopted.includes(this.props.match.params.id);
   }
 
@@ -119,8 +120,8 @@ class FarmersShow extends Component {
             {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
             <br />
-            {!this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer} disabled>ADOPT!</button>}
-            {this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
+            {Auth.isAuthenticated() && !this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>ADOPT!</button>}
+            {Auth.isAuthenticated() && this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
             <br />
             {Auth.isAuthenticated() &&
               <div className="col-12">
@@ -143,6 +144,7 @@ class FarmersShow extends Component {
             }
           </div>
         </div>
+        <br />
         <DonationTotal
           farmer={this.state.farmer}
         />
