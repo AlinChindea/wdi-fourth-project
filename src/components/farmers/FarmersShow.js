@@ -15,7 +15,11 @@ class FarmersShow extends Component {
       lat: null,
       lng: null
     },
-    user: {}
+    user: {},
+    newDonation: {
+      donationAmount: '',
+      product: ''
+    }
   }
 
   deleteFarmer = () => {
@@ -31,21 +35,21 @@ class FarmersShow extends Component {
       .then(res => this.setState({ user: res.data }));
   }
 
-  handleChange = (e) => {
+  handleChange = ({ target: { value, name}}) => {
+    const newDonation = Object.assign({}, this.state.newDonation, { [name]: value });
 
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value, userId: Auth.getPayload().userId });
-
-    const farmer = Object.assign({}, this.state.farmer, {sponsored});
-
-    this.setState({ farmer });
+    this.setState({ newDonation }, () => console.log(this.state));
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     Axios
-      .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
-      .then(res => this.setState({farmer: res.data}, () => console.log(this.state.farmer)))
+      .post(`/api/farmers/${this.props.match.params.id}/donations`, this.state.newDonation, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
+      .then(res => {
+        const farmer = Object.assign({}, this.state.farmer, { donations: res.data.donations });
+        this.setState({ farmer }, () => console.log(this.state.farmer));
+      })
       .catch(err => console.log(err));
   }
 
@@ -61,6 +65,11 @@ class FarmersShow extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-5 col-sm-12">
+            {this.state.farmer.donations && this.state.farmer.donations.map((donation, i) => {
+              const totalDonations = donation.donationAmount;
+              const totalDonationsSum = totalDonations.reduce();
+              return <p key={i}>{totalDonationsSum}</p>;
+            })}
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
             <br />
             <h3><strong>{this.state.farmer.name}</strong></h3>
@@ -109,7 +118,7 @@ class FarmersShow extends Component {
                   </button>
                   <br />
                   <DonationBox
-                    farmer={this.state.farmer}
+                    newDonation={this.state.newDonation}
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                   />

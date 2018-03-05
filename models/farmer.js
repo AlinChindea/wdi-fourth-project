@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+const donationsSchema = mongoose.Schema({
+  userId: {type: mongoose.Schema.ObjectId, ref: 'User'},
+  donationAmount: {type: Number},
+  product: {type: String}
+});
+
 const farmerSchema = mongoose.Schema({
   name: { type: String, required: 'Please provide a name'},
   image: { type: String, required: 'Please upload an image' },
@@ -14,11 +20,7 @@ const farmerSchema = mongoose.Schema({
     weekendStay: {type: Boolean, required: 'Please choose what you offer in exchange'},
     farmExperience: {type: Boolean, required: 'Please choose what you offer in exchange'}
   },
-  sponsored: {
-    userId: String,
-    donationAmount: String,
-    product: String
-  },
+  donations: [donationsSchema],
   target: {type: Number, required: 'Please add your required funding target'},
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
   email: {type: String, required: 'Please provide an email'},

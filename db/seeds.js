@@ -37,11 +37,13 @@ User
           weekendStay: true,
           farmExperience: false
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 3000,
         sponsor: users[0],
         email: 'farmer.joe@fj.com',
@@ -61,11 +63,13 @@ User
           weekendStay: false,
           farmExperience: false
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 10000,
         sponsor: users[0],
         email: 'farmer.mary@fm.com',
@@ -85,11 +89,13 @@ User
           weekendStay: true,
           farmExperience: false
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 20000,
         sponsor: users[0],
         email: 'farmer.steve@fs.com',
@@ -109,11 +115,13 @@ User
           weekendStay: true,
           farmExperience: true
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 2000,
         sponsor: users[0],
         email: 'farmer.alin@fa.com',
@@ -133,11 +141,13 @@ User
           weekendStay: true,
           farmExperience: false
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 80000,
         sponsor: users[0],
         email: 'farmer.stephanie@fs.com',
@@ -157,11 +167,13 @@ User
           weekendStay: true,
           farmExperience: false
         },
-        sponsored: {
-          userId: '',
-          donationAmount: '',
-          product: ''
-        },
+        sponsored: [
+          {
+            userId: '',
+            donationAmount: '',
+            product: ''
+          }
+        ],
         target: 50000,
         sponsor: users[0],
         email: 'farmer.pedro@fp.com',
