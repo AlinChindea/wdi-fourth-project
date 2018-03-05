@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CommentsForm({ newComment, handleChange, handleSubmit }) {
+function CommentsForm({ newComment, handleCommentChange, handleCommentSubmit }) {
 
   return(
     <div className="input-group">
@@ -9,10 +9,10 @@ function CommentsForm({ newComment, handleChange, handleSubmit }) {
         className="textarea margin-bottom"
         rows="1"
         placeholder="Comment"
-        onChange={handleChange}
+        onChange={handleCommentChange}
       >
       </textarea>
-      <button className="btn btn-primary" onClick={handleSubmit} >Add comment</button>
+      <button className="btn btn-outline-secondary btn-sm" onClick={handleCommentSubmit} >Add comment</button>
     </div>
   );
 }

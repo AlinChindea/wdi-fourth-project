@@ -110,7 +110,8 @@ class FarmersShow extends Component {
         const farmer = Object.assign({}, this.state.farmer, { comments: this.state.farmer.comments.concat(res.data) });
         this.setState({ farmer, newComment: { content: '' } });
       })
-      .catch(err => this.setState({ errors: err.response.data.errors }));
+      .catch(err => console.log(err));
+    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {
@@ -201,6 +202,33 @@ class FarmersShow extends Component {
         <DonationTotal
           farmer={this.state.farmer}
         />
+
+        <br />
+        <div className="row">
+          <div className="col-10">
+            {this.state.farmer.comments && this.state.farmer.comments.map(comment => {
+              return(
+                <div key={comment._id} className="comment">
+                  <p>{comment.content} </p>
+                  <p><strong>{comment.createdBy.username}</strong></p>
+                  { Auth.isAuthenticated() && Auth.getPayload().userId === comment.createdBy.id && <button className="btn btn-outline-danger btn-sm" onClick={() => this.deleteComment(comment._id)}>
+                    Delete</button>}
+                  <hr />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        { Auth.isAuthenticated() &&
+        <div className="col-6">
+          <CommentsForm
+            handleCommentChange={ this.handleCommentChange }
+            handleCommentSubmit={ this.handleCommentSubmit }
+            newComment={ this.state.newComment }
+          />
+        </div>
+        }
+
       </div>
     );
   }

@@ -16,10 +16,10 @@ router.route('/farmers/:id')
 router.route('/farmers/:id/donations')
   .post(secureRoute, farmers.addDonation);
 
-router.route('/meteorites/:id/comments')
+router.route('/farmers/:id/comments')
   .post(secureRoute, farmers.addComment);
 
-router.route('/meteorites/:id/comments/:commentId')
+router.route('/farmers/:id/comments/:commentId')
   .delete(farmers.deleteComment);
 
 
