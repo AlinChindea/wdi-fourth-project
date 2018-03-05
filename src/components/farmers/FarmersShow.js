@@ -4,6 +4,7 @@ import Axios from 'axios';
 // import {Nav, NavItem} from 'react-bootstrap';
 
 import GoogleMap from '../utility/GoogleMap';
+import BackButton from '../utility/BackButton';
 import Auth from '../../lib/Auth';
 import DonationBox from './DonationBox';
 import DonationTotal from './DonationTotal';
@@ -77,6 +78,12 @@ class FarmersShow extends Component {
   render() {
     return(
       <div className="container">
+        <div className="row">
+          <div className="col-md-3 offset-md-9 col-sm-12">
+            <BackButton history={this.props.history}/>
+          </div>
+        </div>
+        <br />
         <div className="row">
           <div className="col-md-5 col-sm-12">
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
