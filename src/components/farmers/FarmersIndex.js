@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Auth from '../../lib/Auth';
 
 import SearchBar from '../utility/SearchBar';
+import BackButton from '../utility/BackButton';
 
 
 class FarmersIndex extends Component {
@@ -50,6 +51,12 @@ class FarmersIndex extends Component {
         />}
         <section className="hero">
           <div className="container text-center">
+            <div className="row">
+              <div className="col-md-3 offset-md-9 col-sm-12">
+                <BackButton history={this.props.history}/>
+              </div>
+            </div>
+            <br />
             <div className="row">
               {farmers.map(farmer =>
                 <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
