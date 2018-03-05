@@ -33,7 +33,7 @@ class FarmersShow extends Component {
 
   handleChange = (e) => {
 
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value });
+    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value, userId: Auth.getPayload().userId });
 
     const farmer = Object.assign({}, this.state.farmer, {sponsored});
 
@@ -45,7 +45,7 @@ class FarmersShow extends Component {
 
     Axios
       .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
-      .then(res => this.setState(res.data))
+      .then(res => this.setState({farmer: res.data}))
       .catch(err => console.log(err));
   }
 
@@ -56,15 +56,6 @@ class FarmersShow extends Component {
       .catch(err => console.log(err));
   }
 
-  handleUserId = () => {
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { userId: Auth.getPayload().userId });
-
-    const farmer = Object.assign({}, this.state.farmer, { sponsored });
-    console.log(farmer);
-
-    // this.setState({ farmer }, () => console.log(this.state.farmer));
-  }
-
   render() {
     return(
       <div className="container">
@@ -72,23 +63,39 @@ class FarmersShow extends Component {
           <div className="col-md-5 col-sm-12">
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
             <br />
-            <h3><strong>{this.state.farmer.name}</strong> <button className="btn btn-success btn-sm">
-              <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
-              </Link>
-            </button>{' '} <button className="btn btn-danger btn-sm" onClick={this.deleteFarmer}>
-              <i className="fa fa-trash" aria-hidden="true"></i>
-            </button></h3>
+            <h3><strong>{this.state.farmer.name}</strong></h3>
+            <div className="row">
+              <div className="col-5 offset-1">
+                <button className="btn btn-success btn-sm btn-block">
+                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+                  </Link>
+                </button>
+              </div>
+              <div className="col-5">
+                <button className="btn btn-danger btn-sm btn-block" onClick={this.deleteFarmer}>
+                  <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <br />
+
             <p><em>{this.state.farmer.story}</em></p>
-            <p><em>Looking for: £{this.state.farmer.target}</em></p>
-            <p><em>We are offering:</em></p>
-            <ul>
-              {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) => {
-                const titleCase = keyName.replace( /([A-Z])/g, ' $1' );
-                const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
-                return <li key={i}>{[result]}</li>;
-              }
-              )}
-            </ul>
+            <p><span className="farmer-show-target">Looking for: £{this.state.farmer.target}</span></p>
+            <div className="row">
+              <div className="col-6">
+                <p><em>We are offering:</em></p>
+              </div>
+              <div className="col-6">
+                <ul className="farmer-offer-list">
+                  {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) => {
+                    const titleCase = keyName.replace( /([A-Z])/g, ' $1' );
+                    const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
+                    return <li key={i}>{[result]}</li>;
+                  }
+                  )}
+                </ul>
+              </div>
+            </div>
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
 
           </div>

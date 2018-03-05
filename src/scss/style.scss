@@ -7,10 +7,33 @@ html,
 body {
     width: 100%;
     height: 100vh;
+    text-align: center;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
+}
+
+//SHOW PAGE
+.container {
+  .row {
+    div {
+      ul {
+        &.farmer-offer-list {
+          font-weight: bold;
+          text-align: left;
+        }
+      }
+      p {
+        span {
+          &.farmer-show-target {
+            font-weight: bold;
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .bm-burger-button {
