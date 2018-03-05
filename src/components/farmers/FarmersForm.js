@@ -40,7 +40,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                         <ReactFilestack
                           apikey="AO99xY7O6Q56qp05Go2GFz"
                           buttonText="Upload a photo"
-                          buttonClass="main-button"
+                          buttonClass="main-button btn-primary"
                           onSuccess={handleImageUpload}
                           className="form-control"
                         />
@@ -119,14 +119,14 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                         { errors.number && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.number}</p>}
                       </div>
                       <div>
-                        <button disabled={formIsInvalid} className="btn btn-primary float-right">Save</button>
+                        <button disabled={formIsInvalid} className="btn btn-primary btn-block save-btn-form">Save</button>
                       </div>
                     </form>
-                    { farmer.image && <div className="col-md-6">
-                      <h2>Image Preview</h2>
-                      <img src={farmer.image} className="img-fluid" />
-                    </div> }
                   </div>
+                  { farmer.image && <div className="col-12">
+                    <h4>Image Preview</h4>
+                    <img src={farmer.image} className="img-fluid" />
+                  </div> }
                 </div>
               </div>
             </div>
