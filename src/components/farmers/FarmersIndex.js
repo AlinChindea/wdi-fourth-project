@@ -43,39 +43,41 @@ class FarmersIndex extends Component {
     const farmers = this.sortingAndFiltering();
     return(
       <React.Fragment>
+        { Auth.isAuthenticated() &&
+        <SearchBar
+          handleSort={this.handleSort}
+          handleSearch={this.handleSearch}
+        />}
         <section className="hero">
-        <div className="container">
-          { Auth.isAuthenticated() &&
-          <SearchBar
-            handleSort={this.handleSort}
-            handleSearch={this.handleSearch}
-          />}
-          <div className="row">
-            {farmers.map(farmer =>
-              <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
-
-                <div className="card border-none">
-                  <div className="card-body">
-                    <div className="mt-4">
-                      <Link to={`/farmers/${farmer.id}`}>
-                        <h4 className="index-names"><strong>{farmer.name}</strong></h4>
-                        <img src={farmer.image} className="img-fluid"/>
-                      </Link>
-                      <p>Looking for: £{farmer.target} worth of donations</p>
-                      <p>Offers: </p>
-                      <ul>
-                        {Object.keys(farmer.offer).map((keyName, i) =>
-                          <li key={i}>{[keyName]}</li>
-                        )}
-                      </ul>
+          <div className="container text-center">
+            <div className="row">
+              {farmers.map(farmer =>
+                <div key={farmer.id} className="col-md-4 col-sm-6 col-xs-12 mx-auto">
+                  <div className="card border-none">
+                    <div className="card-body">
+                      <div className="mt-4">
+                        <Link to={`/farmers/${farmer.id}`}>
+                          <h4 className="index-names"><strong>{farmer.name}</strong></h4>
+                          <img src={farmer.image} className="img-fluid index-image"/>
+                        </Link>
+                        <p>Looking for: £{farmer.target} worth of donations</p>
+                        <p>Offers: </p>
+                        <ul className="farmer-offer-list">
+                          {Object.keys(farmer.offer).map((keyName, i) => {
+                            const titleCase = keyName.replace( /([A-Z])/g, ' $1' );
+                            const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
+                            return <li key={i}>{[result]}</li>;
+                          }
+                          )}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </React.Fragment>
     );
   }
