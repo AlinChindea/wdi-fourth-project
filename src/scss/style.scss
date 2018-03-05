@@ -119,17 +119,19 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 
+// show page map
 .google-map {
   height: 50vh;
 }
 
+// nearby map
 .googlemap {
   height: 100vh;
 }
 
-header {
-  background: transparent;
-}
+// header {
+//   background: transparent;
+// }
 
 // index page Styling
 .input-group-text {
@@ -192,11 +194,6 @@ a.infoWindowLink, .col-sm-3 {
 }
 .hero .card {
     background: rgba(0,0,0,0.7);
-    // background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
-    // & h3 {
-    //   padding: 25%;
-    // }
 }
 
 .grow {
