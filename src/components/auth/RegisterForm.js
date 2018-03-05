@@ -2,7 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ReactFilestack from 'filestack-react';
 
-const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => {
+const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, errors, user}) => {
+  // console.log(errors);
+  const registrationIsInvalid = Object.keys(errors).some(key => errors[key]);
   return(
 
     <section className="hero">
@@ -25,6 +27,7 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => 
                         onChange={handleChange}
                         value={user.fullname}
                       />
+                      { errors.fullname && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.fullname}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -34,6 +37,7 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => 
                         onChange={handleChange}
                         value={user.email}
                       />
+                      { errors.email && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.email}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -66,7 +70,7 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, user}) => 
                         className="form-control"
                       />
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block">Create Account</button>
+                    <button disabled={registrationIsInvalid} type="submit" className="btn btn-primary btn-block">Create Account</button>
                   </form>
                   <div className="clearfix"></div>
                   <p className="content-divider center mt-4"><span>or</span></p>

@@ -12,6 +12,7 @@ class Nearby extends React.Component {
   componentDidMount() {
     const radiusMetres = 90000;
     let pos = {};
+    this.infowindow = null;
     this.bounds = new google.maps.LatLngBounds();
     this.map = new google.maps.Map(this.mapCanvas, {
       center: {lat: 51.509865, lng: -0.118092},
@@ -48,7 +49,6 @@ class Nearby extends React.Component {
 
         this.bounds.extend(this.userMarker.getPosition());
 
-
         this.props.farmers.forEach( (farmer) => {
           const farmerLatLng = new google.maps.LatLng(farmer.location);
           const userLatLng = new google.maps.LatLng(pos);
@@ -58,21 +58,25 @@ class Nearby extends React.Component {
           this.setState((prevState) => {
             return {farmers: [...prevState, farmer]};
           }, () => {
-            this.state.farmers.forEach( (farmer, index) => {
-              const infowindow = new google.maps.InfoWindow({
-                content: `<a href='/farmers/${farmer.id}' class="infoWindowLink"><h3>${farmer.name}</h3></a>`
-              });
+            this.state.farmers.forEach(farmer => {
               const farmerIcon = '../assets/farmer.png';
-              this[`farmMarker${index}`] = new google.maps.Marker({
+              const marker = new google.maps.Marker({
                 map: this.map,
                 position: farmer.location,
                 icon: farmerIcon,
                 animation: google.maps.Animation.DROP
               });
-              this[`farmMarker${index}`].addListener('click', () => {
-                infowindow.open(this.map, this[`farmMarker${index}`]);
+              marker.addListener('click', () => {
+                if (this.infowindow ) this.infowindow.close();
+
+                this.infowindow = new google.maps.InfoWindow({
+                  content: `<a href='/farmers/${farmer.id}' class="infoWindowLink"><h3>${farmer.name}</h3></a>`
+                });
+
+                this.infowindow.open(this.map, marker);
               });
-              this.bounds.extend(this[`farmMarker${index}`].getPosition());
+
+              this.bounds.extend(marker.getPosition());
               this.map.fitBounds(this.bounds);
               this.map.setZoom(8);
             });

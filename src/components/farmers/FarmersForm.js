@@ -29,7 +29,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.name}
                           onChange={handleChange}
                         />
-                        { errors.name && <p className="alert alert-warning" role="alert">{errors.name}</p>}
+                        { errors.name && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.name}</p>}
                       </div>
                       <div className="form-group">
                         <ReactFilestack
@@ -39,7 +39,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           onSuccess={handleImageUpload}
                           className="form-control"
                         />
-                        {errors.image && <p className="alert alert-warning" role="alert">{errors.image}</p>}
+                        {errors.image && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.image}</p>}
                       </div>
                       <GoogleAutocomplete setLatLng={setLatLng} />
                       <div className="form-group">
@@ -53,7 +53,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.address}
                           onChange={handleChange}
                         />
-                        {errors.address && <p className="alert alert-warning" role="alert">{errors.address}</p>}
+                        {errors.address && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.address}</p>}
                       </div>
                       <div className="form-group">
                         <input
@@ -65,7 +65,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.story}
                           onChange={handleChange}
                         />
-                        {errors.story && <p className="alert alert-warning" role="alert">{errors.story}</p>}
+                        {errors.story && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.story}</p>}
                       </div>
                       <div className="form-group">
                         <input
@@ -77,7 +77,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.target}
                           onChange={handleChange}
                         />
-                        {errors.looking && <p className="alert alert-warning" role="alert">{errors.looking}</p>}
+                        {errors.looking && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.looking}</p>}
                       </div>
                       <div className="form-group">
                         <label htmlFor="looking">Farmer offers:</label>
@@ -88,7 +88,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                         {' '}
                         Farm Experiences <input type="checkbox" name="Farm Experiences" value="farmExperience" checked={farmer.offer.farmExperience} onChange={handleFormCheckBox}/>
                       </div>
-                      {errors.offer && <p className="alert alert-warning" role="alert">{errors.offer}</p>}
+                      {errors.offer && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.offer}</p>}
                       <div className="form-group">
                         <label htmlFor="name">Email</label>
                         <input
@@ -99,7 +99,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.email}
                           onChange={handleChange}
                         />
-                        { errors.email && <p className="alert alert-warning" role="alert">{errors.email}</p>}
+                        { errors.email && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.email}</p>}
                       </div>
                       <div className="form-group">
                         <label htmlFor="name">Number</label>
@@ -111,7 +111,7 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
                           value={farmer.number}
                           onChange={handleChange}
                         />
-                        { errors.number && <p className="alert alert-warning" role="alert">{errors.number}</p>}
+                        { errors.number && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.number}</p>}
                       </div>
                       <div>
                         <button disabled={formIsInvalid} className="btn btn-primary float-right">Save</button>

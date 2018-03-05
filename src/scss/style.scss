@@ -129,10 +129,6 @@ body {
   height: 100vh;
 }
 
-// header {
-//   background: transparent;
-// }
-
 // index page Styling
 .input-group-text {
   color: #ff5722;
@@ -329,4 +325,10 @@ a:hover {
     background-color: #ddd;
     width: 100%;
     z-index: -1;
+}
+// form validation - error handling
+.alert-warning {
+  color: #ff5722;
+  background: rgba(0,0,0,0);
+  border: none;
 }
