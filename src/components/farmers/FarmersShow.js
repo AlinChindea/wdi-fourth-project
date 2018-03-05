@@ -45,7 +45,7 @@ class FarmersShow extends Component {
 
     Axios
       .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
-      .then(res => this.setState({farmer: res.data}))
+      .then(res => this.setState({farmer: res.data}, () => console.log(this.state.farmer)))
       .catch(err => console.log(err));
   }
 
@@ -78,7 +78,6 @@ class FarmersShow extends Component {
               </div>
             </div>
             <br />
-
             <p><em>{this.state.farmer.story}</em></p>
             <p><span className="farmer-show-target">Looking for: £{this.state.farmer.target}</span></p>
             <div className="row">
@@ -97,7 +96,6 @@ class FarmersShow extends Component {
               </div>
             </div>
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
-
           </div>
           <div className="col-md-7 col-sm-12">
             {!this.state.center.lat && <h1>map loading...</h1>}
@@ -105,7 +103,7 @@ class FarmersShow extends Component {
             <GoogleMap center={this.state.center}/>}
             <br />
             {Auth.isAuthenticated() &&
-                <div className="col-md-12 col-sm-12">
+                <div className="col-12">
                   <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>
                     ADOPT!
                   </button>
@@ -118,20 +116,17 @@ class FarmersShow extends Component {
                 </div>
             }
             {!Auth.isAuthenticated() &&
-
-                  <div className="col-md-3 col-sm-12">
-                    <Link to="/register">
-                      <button className="btn btn-success btn-sm btn-block">
-                        Please Register/Sign In To Adopt or Donate To {this.state.farmer.name}
-                      </button>
-                    </Link>
-                  </div>
-
+              <div className="col-12">
+                <p>To Donate to: {this.state.farmer.name}</p>
+                <Link to="/register">
+                  <button className="btn btn-success btn-sm btn-block">
+                    Please Register/Sign In
+                  </button>
+                </Link>
+              </div>
             }
           </div>
         </div>
-
-
       </div>
     );
   }
