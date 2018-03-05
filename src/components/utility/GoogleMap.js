@@ -95,15 +95,18 @@ class GoogleMap extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="google-map" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
-        {!this.state.show &&
-          <div className="alert alert-primary" role="alert">
-            {this.state.distance && <p> This farmer is { this.state.distance } away.</p>}
-            { this.state.duration && <p>You can drive there in { this.state.duration }.</p>}
-            <button className="btn btn-outline-danger btn-sm" onClick={this.handleAlertDismiss}>Hide info</button>
-          </div>}
-        {this.state.show &&
-            <button className="btn btn-outline-primary btn-sm" onClick={this.handleAlertShow}>Show distance</button>}
+        <div className="col-md-12 col-sm-12">
+          <div className="google-map" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
+          {!this.state.show &&
+            <div className="alert alert-primary" role="alert">
+              {this.state.distance && <p> This farmer is { this.state.distance } away.</p>}
+              { this.state.duration && <p>You can drive there in { this.state.duration }.</p>}
+              <button className="btn btn-outline-danger btn-sm" onClick={this.handleAlertDismiss}>Hide info</button>
+            </div>}
+          <br />
+          {this.state.show &&
+              <button className="btn btn-outline-primary btn-sm show-distance-btn btn-block" onClick={this.handleAlertShow}>Show distance</button>}
+        </div>
       </React.Fragment>
     );
   }

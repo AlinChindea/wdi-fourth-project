@@ -33,7 +33,7 @@ class FarmersShow extends Component {
 
   handleChange = (e) => {
 
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value });
+    const sponsored = Object.assign({}, this.state.farmer.sponsored, { [e.target.name]: e.target.value, userId: Auth.getPayload().userId });
 
     const farmer = Object.assign({}, this.state.farmer, {sponsored});
 
@@ -43,15 +43,9 @@ class FarmersShow extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { userId: Auth.getPayload().userId });
-
-    const farmer = Object.assign({}, this.state.farmer, { sponsored });
-
-    this.setState({ farmer });
-
     Axios
       .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
-      .then(res => console.log(res.data))
+      .then(res => this.setState({farmer: res.data}, () => console.log(this.state.farmer)))
       .catch(err => console.log(err));
   }
 
@@ -66,59 +60,72 @@ class FarmersShow extends Component {
     return(
       <div className="container">
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-5 col-sm-12">
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
             <br />
-            <h3><strong>{this.state.farmer.name}</strong> <button className="btn btn-success btn-sm">
-              <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
-              </Link>
-            </button>{' '} <button className="btn btn-danger btn-sm" onClick={this.deleteFarmer}>
-              <i className="fa fa-trash" aria-hidden="true"></i>
-            </button></h3>
+            <h3><strong>{this.state.farmer.name}</strong></h3>
+            <div className="row">
+              <div className="col-5 offset-1">
+                <button className="btn btn-success btn-sm btn-block">
+                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+                  </Link>
+                </button>
+              </div>
+              <div className="col-5">
+                <button className="btn btn-danger btn-sm btn-block" onClick={this.deleteFarmer}>
+                  <i className="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <br />
             <p><em>{this.state.farmer.story}</em></p>
-            <p><em>Looking for: £{this.state.farmer.target}</em></p>
-            <p><em>We are offering:</em></p>
-            <ul>
-              {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) =>
-                <li key={i}>{[keyName]}</li>
-              )}
-            </ul>
+            <p><span className="farmer-show-target">Looking for: £{this.state.farmer.target}</span></p>
+            <div className="row">
+              <div className="col-6">
+                <p><em>We are offering:</em></p>
+              </div>
+              <div className="col-6">
+                <ul className="farmer-offer-list">
+                  {this.state.farmer.offer &&  Object.keys(this.state.farmer.offer).map((keyName, i) => {
+                    const titleCase = keyName.replace( /([A-Z])/g, ' $1' );
+                    const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
+                    return <li key={i}>{[result]}</li>;
+                  }
+                  )}
+                </ul>
+              </div>
+            </div>
             {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
-
           </div>
-          <div className="col-7">
+          <div className="col-md-7 col-sm-12">
             {!this.state.center.lat && <h1>map loading...</h1>}
             {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
-          </div>
-        </div>
-
-        <br />
-
-        <div className="row">
-          {Auth.isAuthenticated() &&
-              <div className="col-md-3">
-                <button className="btn btn-primary" onClick={this.adoptFarmer}>
-                  <p>ADOPT!</p>
-                </button>
-                <DonationBox
-                  farmer={this.state.farmer}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                />
-              </div>
-          }
-          {!Auth.isAuthenticated() &&
-
-                <div className="col-md-3">
-                  <Link to="/register">
-                    <button className="btn btn-success btn-sm">
-                      Please Register/Sign In To Adopt or Donate To {this.state.farmer.name}
-                    </button>
-                  </Link>
+            <br />
+            {Auth.isAuthenticated() &&
+                <div className="col-12">
+                  <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>
+                    ADOPT!
+                  </button>
+                  <br />
+                  <DonationBox
+                    farmer={this.state.farmer}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                  />
                 </div>
-
-          }
+            }
+            {!Auth.isAuthenticated() &&
+              <div className="col-12">
+                <p>To Donate to: {this.state.farmer.name}</p>
+                <Link to="/register">
+                  <button className="btn btn-success btn-sm btn-block">
+                    Please Register/Sign In
+                  </button>
+                </Link>
+              </div>
+            }
+          </div>
         </div>
       </div>
     );

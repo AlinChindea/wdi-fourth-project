@@ -14,6 +14,12 @@ User
     passwordConfirmation: 'test',
     image: 'https://goo.gl/SGvBkG',
     farmerTrue: false
+  },{
+    username: 'test2',
+    email: 'test2@mail.com',
+    password: 'test',
+    passwordConfirmation: 'test',
+    farmerTrue: false
   }])
   .then((users) => {
     console.log(`${users.length} users created!!`);

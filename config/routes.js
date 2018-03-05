@@ -25,6 +25,9 @@ router.route('/users/adopt')
 router.route('/users/:id')
   .get(users.show);
 
+router.route('/users')
+  .get(users.index);
+
 router.all('/*', (req, res) => res.notFound());
 
 
