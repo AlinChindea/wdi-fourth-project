@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  fullname: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  fullname: { type: String, required: 'Your full name is required' },
+  email: { type: String, required: 'An email is required' },
+  password: { type: String },
   adopted: {type: Array},
   image: {type: String},
-  farmerTrue: {type: Boolean, required: true}
+  farmerTrue: {type: Boolean, required: 'Please indicate if you are a farmer'}
 });
 
 userSchema.set('toJSON', {

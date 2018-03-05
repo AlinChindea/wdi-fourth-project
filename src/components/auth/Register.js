@@ -13,7 +13,8 @@ class Register extends React.Component {
       password: '',
       passwordConfirmation: '',
       farmerTrue: false
-    }
+    },
+    errors: {}
   };
 
   handleChange = ({target: {name, value}}) => {
@@ -28,6 +29,7 @@ class Register extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     Axios
       .post('/api/register', this.state.user)
       .then(res => {
@@ -35,7 +37,7 @@ class Register extends React.Component {
 
         this.props.history.push('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => this.setState({errors: err.response.data.errors}));
   }
 
   render() {
@@ -45,6 +47,7 @@ class Register extends React.Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleImageUpload={this.handleImageUpload}
+        errors={this.state.errors}
       />
     );
   }
