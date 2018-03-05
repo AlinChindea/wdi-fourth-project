@@ -4,6 +4,7 @@ import Axios from 'axios';
 // import {Nav, NavItem} from 'react-bootstrap';
 
 import GoogleMap from '../utility/GoogleMap';
+import BackButton from '../utility/BackButton';
 import Auth from '../../lib/Auth';
 import DonationBox from './DonationBox';
 import DonationTotal from './DonationTotal';
@@ -78,6 +79,12 @@ class FarmersShow extends Component {
     return(
       <div className="container">
         <div className="row">
+          <div className="col-md-3 offset-md-9 col-sm-12">
+            <BackButton history={this.props.history}/>
+          </div>
+        </div>
+        <br />
+        <div className="row">
           <div className="col-md-5 col-sm-12">
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
             <br />
@@ -85,8 +92,10 @@ class FarmersShow extends Component {
             <div className="row">
               <div className="col-5 offset-1">
                 <button className="btn btn-success btn-sm btn-block">
-                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+                  {this.state.farmer.id &&
+                  <Link to={`/farmers/${this.state.farmer.id}/edit`}><i className="fa fa-pencil" aria-hidden="true"></i>
                   </Link>
+                  }
                 </button>
               </div>
               <div className="col-5">

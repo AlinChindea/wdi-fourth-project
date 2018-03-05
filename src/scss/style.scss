@@ -71,8 +71,23 @@ body {
           }
         }
       }
+      a {
+        img {
+          &.index-image {
+            margin-bottom: 10px;
+          }
+        }
+      }
     }
   }
+}
+
+.save-btn-form {
+  margin-bottom: 20px;
+}
+
+#address {
+  margin-top: 20px;
 }
 
 .bm-burger-button {

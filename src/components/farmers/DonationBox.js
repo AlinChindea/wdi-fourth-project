@@ -35,7 +35,7 @@ const DonationBox = ({ newDonation, handleChange, handleSubmit }) => {
         </select>
       </div>
       <div>
-        <button className="btn btn-primary show-btn-add btn-block">Save</button>
+        <button className="btn btn-primary show-btn-add btn-block">Donate</button>
       </div>
     </form>
 

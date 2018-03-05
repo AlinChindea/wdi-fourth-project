@@ -4,6 +4,7 @@ import Auth from '../../lib/Auth';
 import ReactFilestack from 'filestack-react';
 
 // import RegisterForm from '../auth/RegisterForm';
+import BackButton from '../utility/BackButton';
 
 class UserProfile extends Component {
   state = {
@@ -52,6 +53,13 @@ class UserProfile extends Component {
     console.log(this.state.farmers);
     return(
       <div className="container">
+        <div className="row">
+          <div className="col-md-3 offset-md-9 col-sm-12">
+            <BackButton history={this.props.history}/>
+          </div>
+        </div>
+        <br />
+
         <div className="row my-2">
           <div className="col-lg-8 order-lg-2">
             <ul className="nav nav-tabs justify-content-center">

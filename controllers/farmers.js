@@ -78,11 +78,45 @@ function addDonation(req, res, next) {
     .catch(next);
 }
 
+function createCommentRoute(req, res, next) {
+  req.body.createdBy = req.currentUser;
+
+  Farmer
+    .findById(req.params.id)
+    .exec()
+    .then((farmer) => {
+      if(!farmer) return res.notFound();
+
+      const comment = farmer.comments.create(req.body);
+      farmer.comments.push(comment);
+      return farmer.save();
+    })
+    .then(farmer => res.json(farmer.comments[farmer.comments.length - 1]))
+    .catch(next);
+}
+
+function deleteCommentRoute(req, res, next) {
+  Farmer
+    .findById(req.params.id)
+    .exec()
+    .then((farmer) => {
+      if(!farmer) return res.notFound();
+
+      const comment = farmer.comments.id(req.params.commentId);
+      comment.remove();
+      farmer.save();
+      return res.status(204).json(farmer.comments);
+    })
+    .catch(next);
+}
+
 module.exports = {
   index: farmersIndex,
   create: farmersCreate,
   show: farmersShow,
   update: farmersUpdate,
   delete: farmersDelete,
-  addDonation: addDonation
+  addDonation: addDonation,
+  addComment: createCommentRoute,
+  deleteComment: deleteCommentRoute
 };

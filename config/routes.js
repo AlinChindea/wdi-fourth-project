@@ -16,6 +16,13 @@ router.route('/farmers/:id')
 router.route('/farmers/:id/donations')
   .post(secureRoute, farmers.addDonation);
 
+router.route('/meteorites/:id/comments')
+  .post(secureRoute, farmers.addComment);
+
+router.route('/meteorites/:id/comments/:commentId')
+  .delete(farmers.deleteComment);
+
+
 router.route('/register')
   .post(auth.register);
 

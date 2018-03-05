@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactFilestack from 'filestack-react';
 import GoogleAutocomplete from '../utility/GoogleAutocomplete';
+import BackButton from '../utility/BackButton';
 
 function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng }) {
   const formIsInvalid = Object.keys(errors).some(key => errors[key]);
@@ -8,8 +9,13 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
     <section className="hero">
       <div className="container">
         <div className="row">
+          <div className="col-md-3 offset-md-9 col-sm-12">
+            <BackButton history={history}/>
+          </div>
+        </div>
+        <br />
+        <div className="row">
           <div className="page-banner col-md-12">
-
             <div className="col-md-6 col-sm-8 mx-auto">
               <div className="card border-none">
                 <div className="card-body">
@@ -34,7 +40,7 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
                         <ReactFilestack
                           apikey="AO99xY7O6Q56qp05Go2GFz"
                           buttonText="Upload a photo"
-                          buttonClass="main-button"
+                          buttonClass="main-button btn-primary"
                           onSuccess={handleImageUpload}
                           className="form-control"
                         />
@@ -113,14 +119,14 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
                         { errors.number && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.number}</p>}
                       </div>
                       <div>
-                        <button disabled={formIsInvalid} className="btn btn-primary float-right">Save</button>
+                        <button disabled={formIsInvalid} className="btn btn-primary btn-block save-btn-form">Save</button>
                       </div>
                     </form>
-                    { farmer.image && <div className="col-md-6">
-                      <h2>Image Preview</h2>
-                      <img src={farmer.image} className="img-fluid" />
-                    </div> }
                   </div>
+                  { farmer.image && <div className="col-12">
+                    <h4>Image Preview</h4>
+                    <img src={farmer.image} className="img-fluid" />
+                  </div> }
                 </div>
               </div>
             </div>
