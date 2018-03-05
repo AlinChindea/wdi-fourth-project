@@ -19,6 +19,7 @@ const DonationBox = ({ newDonation, handleChange, handleSubmit }) => {
           <option name="product" value="farmExperience">Farm Experience</option>
           <option name="product" value="produce">Produce</option>
         </select>
+        <br />
         <select
           className="form-control"
           id="donationAmount"
