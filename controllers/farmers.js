@@ -10,6 +10,8 @@ function farmersIndex(req, res, next) {
 
 function farmersCreate(req, res, next) {
 
+  req.body.createdBy = req.currentUser;
+
   if(req.file) req.body.image = req.file.filename;
 
   Farmer
@@ -21,6 +23,8 @@ function farmersCreate(req, res, next) {
 function farmersShow(req, res, next) {
   Farmer
     .findById(req.params.id)
+    .populate('createdBy')
+    .populate('comments.createdBy')
     .exec()
     .then((farmer) => {
       if(!farmer) return res.notFound();
@@ -30,6 +34,7 @@ function farmersShow(req, res, next) {
 }
 
 function farmersUpdate(req, res, next) {
+  delete req.body.createdBy;
 
   // filestack
   if(req.file) req.body.image = req.file.filename;

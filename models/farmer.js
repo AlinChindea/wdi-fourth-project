@@ -1,5 +1,17 @@
 const mongoose = require('mongoose');
 
+const commentSchema = mongoose.Schema({
+  content: { type: String, required: true },
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
+}, {
+  timestamps: true
+});
+
+commentSchema.methods.belongsTo = function commentBelongsTo(user) {
+  return this.createdBy.id === user.id;
+};
+
+
 const donationsSchema = mongoose.Schema({
   userId: {type: mongoose.Schema.ObjectId, ref: 'User'},
   donationAmount: {type: Number},
@@ -25,7 +37,9 @@ const farmerSchema = mongoose.Schema({
   sponsor: {type: mongoose.Schema.ObjectId, ref: 'User'},
   email: {type: String, required: 'Please provide an email'},
   number: {type: String, required: 'Please provide a phone number'},
-  farmerTrue: {type: Boolean, required: true}
+  farmerTrue: {type: Boolean, required: true},
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User'},
+  comments: [ commentSchema ]
 });
 
 farmerSchema.set('toJSON', {
@@ -36,5 +50,9 @@ farmerSchema.set('toJSON', {
     delete json.__v;
   }
 });
+
+farmerSchema.methods.belongsTo = function belongsTo(user) {
+  return this.createdBy.id === user.id;
+};
 
 module.exports = mongoose.model('farmer', farmerSchema);
