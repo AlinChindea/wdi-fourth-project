@@ -13,6 +13,9 @@ router.route('/farmers/:id')
   .put(farmers.update)
   .delete(farmers.delete);
 
+router.route('/farmers/:id/donations')
+  .post(secureRoute, farmers.addDonation);
+
 router.route('/register')
   .post(auth.register);
 

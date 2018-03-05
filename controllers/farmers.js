@@ -58,10 +58,31 @@ function farmersDelete(req, res, next) {
     .catch(next);
 }
 
+function addDonation(req, res, next) {
+  req.body.donationAmount = parseInt(req.body.donationAmount);
+  req.body.userId         = req.currentUser;
+
+  Farmer
+    .findById(req.params.id)
+    .exec()
+    .then(farmer => {
+      if(!farmer) return res.notFound();
+
+      farmer.donations.push(req.body);
+
+      return farmer.save();
+    })
+    .then(farmer => {
+      return res.status(200).json(farmer);
+    })
+    .catch(next);
+}
+
 module.exports = {
   index: farmersIndex,
   create: farmersCreate,
   show: farmersShow,
   update: farmersUpdate,
-  delete: farmersDelete
+  delete: farmersDelete,
+  addDonation: addDonation
 };
