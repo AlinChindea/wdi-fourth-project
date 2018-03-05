@@ -9,8 +9,13 @@ function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, hand
     <section className="hero">
       <div className="container">
         <div className="row">
+          <div className="col-md-3 offset-md-9 col-sm-12">
+            <BackButton history={history}/>
+          </div>
+        </div>
+        <br />
+        <div className="row">
           <div className="page-banner col-md-12">
-            <BackButton history={history} />
             <div className="col-md-6 col-sm-8 mx-auto">
               <div className="card border-none">
                 <div className="card-body">
