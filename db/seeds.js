@@ -8,14 +8,14 @@ mongoose.connect(db[env]);
 Farmer.collection.drop();
 User
   .create([{
-    username: 'test',
+    fullname: 'test',
     email: 'test@mail.com',
     password: 'test',
     passwordConfirmation: 'test',
     image: 'https://goo.gl/SGvBkG',
     farmerTrue: false
   },{
-    username: 'test2',
+    fullname: 'test2',
     email: 'test2@mail.com',
     password: 'test',
     passwordConfirmation: 'test',

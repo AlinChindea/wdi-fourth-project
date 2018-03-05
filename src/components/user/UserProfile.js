@@ -63,7 +63,7 @@ class UserProfile extends Component {
                 <a data-target="#messages" data-toggle="tab" onClick={this.handleSelectTab} data-value="messages"  className={`nav-link ${this.state.activeTab === 'messages' ? 'active' : ''}`}>Messages</a>
               </li>
               <li className="nav-item">
-                <a data-target="#edit" data-value="edit" onClick={this.handleSelectTab} data-toggle="tab" className="nav-link">Edit</a>
+                <a data-target="#edit" data-value="edit" onClick={this.handleSelectTab} data-toggle="tab" className={`nav-link ${this.state.activeTab === 'edit' ? 'active' : ''}`}>Edit</a>
               </li>
             </ul>
             <div className="tab-content py-4">
@@ -72,7 +72,7 @@ class UserProfile extends Component {
                 <h5 className="mb-3">User Profile</h5>
                 <div className="row">
                   <div className="col-md-6">
-                    <h5>{this.state.user.username}</h5>
+                    <h5>{this.state.user.fullname}</h5>
                     <h6>About</h6>
                     <p>
                       Web Designer, UI/UX Engineer
