@@ -20,8 +20,7 @@ class FarmersShow extends Component {
     newDonation: {
       donationAmount: '',
       product: ''
-    },
-    donationTotal: []
+    }
   }
 
   deleteFarmer = () => {
@@ -133,12 +132,9 @@ class FarmersShow extends Component {
             }
           </div>
         </div>
-          <DonationTotal
-            farmer={this.state.farmer}
-            donationTotal={this.state.donationTotal}
-          />
-
-
+        <DonationTotal
+          farmer={this.state.farmer}
+        />
       </div>
     );
   }
