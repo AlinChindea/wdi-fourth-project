@@ -5,9 +5,7 @@ import ReactFilestack from 'filestack-react';
 
 class UserProfile extends Component {
   state = {
-    user: {
-      image: ''
-    },
+    user: {},
     farmers: [],
     activeTab: 'messages'
   }
@@ -33,11 +31,12 @@ class UserProfile extends Component {
   handleImageUpload = result => {
     const user = Object.assign({}, this.state.user, { image: result.filesUploaded[0].url});
     this.setState({ user}, () => {
+      const userUpdate = {image: this.state.user.image};
       Axios
-        .post('/api/users', this.state.user.image, {
+        .put(`/api/users/${this.props.match.params.id}`, userUpdate, {
           headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
         })
-        .then(() => this.props.history.push('/'))
+        .then((res) => console.log(res))
         .catch(err => this.setState({errors: err.response.data.errors}));
     });
   }

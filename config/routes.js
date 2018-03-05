@@ -23,7 +23,8 @@ router.route('/users/adopt')
   .put(secureRoute, users.adopt);
 
 router.route('/users/:id')
-  .get(users.show);
+  .get(users.show)
+  .put(users.update);
 
 router.route('/users')
   .get(users.index);

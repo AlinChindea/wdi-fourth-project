@@ -21,6 +21,25 @@ function usersShow(req, res, next) {
     .catch(next);
 }
 
+function usersUpdate(req, res, next) {
+
+  // filestack
+  // if(req.file) req.body.image = req.file.filename;
+
+  User
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      if(!user) return res.notFound();
+      user.image = req.body.image;
+      console.log('user***********', user);
+      return user.save();
+    })
+    .then(user => res.json(user))
+    .catch(next);
+}
+
+
 function usersAdopt(req, res, next) {
   const currentUser = req.currentUser.id;
 
@@ -41,5 +60,6 @@ function usersAdopt(req, res, next) {
 module.exports = {
   index: usersIndex,
   show: usersShow,
-  adopt: usersAdopt
+  adopt: usersAdopt,
+  update: usersUpdate
 };
