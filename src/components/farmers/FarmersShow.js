@@ -120,8 +120,10 @@ class FarmersShow extends Component {
             {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
             <br />
-            {Auth.isAuthenticated() && !this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>ADOPT!</button>}
-            {Auth.isAuthenticated() && this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
+            <div className="col-12">
+              {Auth.isAuthenticated() && !this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>ADOPT!</button>}
+              {Auth.isAuthenticated() && this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
+            </div>
             <br />
             {Auth.isAuthenticated() &&
               <div className="col-12">
