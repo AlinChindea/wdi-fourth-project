@@ -39,7 +39,7 @@ class FarmersShow extends Component {
   handleChange = ({ target: { value, name}}) => {
     const newDonation = Object.assign({}, this.state.newDonation, { [name]: value });
 
-    this.setState({ newDonation }, () => console.log(this.state));
+    this.setState({ newDonation });
   }
 
   handleSubmit = (e) => {
@@ -49,7 +49,7 @@ class FarmersShow extends Component {
       .post(`/api/farmers/${this.props.match.params.id}/donations`, this.state.newDonation, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
       .then(res => {
         const farmer = Object.assign({}, this.state.farmer, { donations: res.data.donations });
-        this.setState({ farmer }, () => console.log(this.state.farmer));
+        this.setState({ farmer });
       })
       .catch(err => console.log(err));
   }
@@ -59,6 +59,18 @@ class FarmersShow extends Component {
       .get(`/api/farmers/${this.props.match.params.id}`)
       .then(res => this.setState({ farmer: res.data, center: {lat: res.data.location.lat, lng: res.data.location.lng}}))
       .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    Axios
+      .get(`/api/users/${Auth.getPayload().userId}`)
+      .then(res => this.setState({user: res.data}))
+      .catch(err => console.log(err));
+  }
+
+  userHasAdopted = () => {
+    console.log(this.state.user);
+    return this.state.user.adopted && this.state.user.adopted.includes(this.props.match.params.id);
   }
 
   render() {
@@ -107,18 +119,17 @@ class FarmersShow extends Component {
             {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
             <br />
+            {!this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer} disabled>ADOPT!</button>}
+            {this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
+            <br />
             {Auth.isAuthenticated() &&
-                <div className="col-12">
-                  <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>
-                    ADOPT!
-                  </button>
-                  <br />
-                  <DonationBox
-                    newDonation={this.state.newDonation}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                  />
-                </div>
+              <div className="col-12">
+                <DonationBox
+                  newDonation={this.state.newDonation}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              </div>
             }
             {!Auth.isAuthenticated() &&
               <div className="col-12">

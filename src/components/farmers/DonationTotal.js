@@ -9,8 +9,6 @@ const DonationTotal = ({ farmer }) => {
 
   const percentOfTarget = (Math.round((total / farmer.target) * 100)) + '%';
 
-  console.log(percentOfTarget);
-
   return (
     <div className="row">
       <div className="col-12">
