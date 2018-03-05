@@ -43,6 +43,7 @@ class FarmersIndex extends Component {
     const farmers = this.sortingAndFiltering();
     return(
       <React.Fragment>
+        <section className="hero">
         <div className="container">
           { Auth.isAuthenticated() &&
           <SearchBar
@@ -57,7 +58,7 @@ class FarmersIndex extends Component {
                   <div className="card-body">
                     <div className="mt-4">
                       <Link to={`/farmers/${farmer.id}`}>
-                        <h3 className="index-names"><strong>{farmer.name}</strong></h3>
+                        <h4 className="index-names"><strong>{farmer.name}</strong></h4>
                         <img src={farmer.image} className="img-fluid"/>
                       </Link>
                       <p>Looking for: £{farmer.target} worth of donations</p>
@@ -74,7 +75,7 @@ class FarmersIndex extends Component {
             )}
           </div>
         </div>
-
+      </section>
       </React.Fragment>
     );
   }
