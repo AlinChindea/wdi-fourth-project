@@ -1,8 +1,6 @@
 /* global google */
 
 import React from 'react';
-import {Link} from 'react-router-dom';
-import ReactDOMServer from 'react-dom/server';
 
 class Nearby extends React.Component {
   state = {
@@ -85,8 +83,6 @@ class Nearby extends React.Component {
       });
 
     }
-
-
 
   }
   componentWillUnmount() {

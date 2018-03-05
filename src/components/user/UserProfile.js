@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Auth from '../../lib/Auth';
 import ReactFilestack from 'filestack-react';
 
-import RegisterForm from '../auth/RegisterForm';
+// import RegisterForm from '../auth/RegisterForm';
 
 class UserProfile extends Component {
   state = {
@@ -51,11 +51,8 @@ class UserProfile extends Component {
   render() {
     return(
       <div className="container">
-
         <div className="row my-2">
           <div className="col-lg-8 order-lg-2">
-
-
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a data-target="#profile" data-value="profile" onClick={this.handleSelectTab} data-toggle="tab" className={`nav-link ${this.state.activeTab === 'profile' ? 'active' : ''}`}>Profile</a>
@@ -71,35 +68,26 @@ class UserProfile extends Component {
 
               {this.state.activeTab === 'profile' &&
               <div className="tab-pane active" id="profile">
-                <h5 className="mb-3">User Profile</h5>
                 <div className="row">
                   <div className="col-md-6">
-                    <h5>{this.state.user.fullname}</h5>
-                    <h6>About</h6>
-                    <p>
-                      Web Designer, UI/UX Engineer
-                    </p>
-                    <h6>Hobbies</h6>
-                    <p>
-                      Indie music, skiing and hiking. I love the great outdoors.
-                    </p>
+                    <h5>Welcome back, {this.state.user.fullname}.</h5>
                   </div>
-                  <ul>
-                    {this.state.farmers && this.state.farmers.map((farmer, i) => {
-                      return(<li key={i}>{farmer.name}</li>);
-                    })}
-                  </ul>
+
                   <div className="col-md-6">
 
                     <hr />
                   </div>
                   <div className="col-md-12">
-                    <h5 className="mt-2"><span className="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
+                    <h5 className="mt-2"><span className="fa fa-clock-o ion-clock float-right"></span> Your adopted farmers</h5>
                     <table className="table table-sm table-hover table-striped">
                       <tbody>
                         <tr>
                           <td>
-                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                            <ul>
+                              {this.state.farmers && this.state.farmers.map((farmer, i) => {
+                                return(<li key={i}>{farmer.name}</li>);
+                              })}
+                            </ul>
                           </td>
                         </tr>
                         <tr>

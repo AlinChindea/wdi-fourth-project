@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactFilestack from 'filestack-react';
-import BackButton from '../utility/BackButton';
 import GoogleAutocomplete from '../utility/GoogleAutocomplete';
 
-function FarmersForm({ history, handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng }) {
+function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng }) {
   const formIsInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <section className="hero">
       <div className="container">
         <div className="row">
           <div className="page-banner col-md-12">
-            <BackButton history={history} />
+
             <div className="col-md-6 col-sm-8 mx-auto">
               <div className="card border-none">
                 <div className="card-body">
