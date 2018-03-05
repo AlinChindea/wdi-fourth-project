@@ -92,8 +92,10 @@ class FarmersShow extends Component {
             <div className="row">
               <div className="col-5 offset-1">
                 <button className="btn btn-success btn-sm btn-block">
-                  <Link to={`/farmers/${this.state.farmer.id}/edit`} ><i className="fa fa-pencil" aria-hidden="true"></i>
+                  {this.state.farmer.id &&
+                  <Link to={`/farmers/${this.state.farmer.id}/edit`}><i className="fa fa-pencil" aria-hidden="true"></i>
                   </Link>
+                  }
                 </button>
               </div>
               <div className="col-5">
