@@ -1,5 +1,13 @@
 const User = require('../models/user');
 
+function usersIndex(req, res, next) {
+  User
+    .find()
+    .exec()
+    .then(users => res.json(users))
+    .catch(next);
+}
+
 function usersShow(req, res, next) {
   User
     .findById(req.params.id)
@@ -31,6 +39,7 @@ function usersAdopt(req, res, next) {
 }
 
 module.exports = {
+  index: usersIndex,
   show: usersShow,
   adopt: usersAdopt
 };
