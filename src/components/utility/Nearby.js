@@ -1,6 +1,8 @@
 /* global google */
 
 import React from 'react';
+import {Link} from 'react-router-dom';
+import ReactDOMServer from 'react-dom/server';
 
 class Nearby extends React.Component {
   state = {
@@ -58,7 +60,7 @@ class Nearby extends React.Component {
           }, () => {
             this.state.farmers.forEach( (farmer, index) => {
               const infowindow = new google.maps.InfoWindow({
-                content: 'Hi, I am a farmer'
+                content: `<a href='/farmers/${farmer.id}' class="infoWindowLink"><h3>${farmer.name}</h3></a>`
               });
               const farmerIcon = '../assets/farmer.png';
               this[`farmMarker${index}`] = new google.maps.Marker({
@@ -67,7 +69,7 @@ class Nearby extends React.Component {
                 icon: farmerIcon,
                 animation: google.maps.Animation.DROP
               });
-              this[`farmMarker${index}`].addListener('click', function() {
+              this[`farmMarker${index}`].addListener('click', () => {
                 infowindow.open(this.map, this[`farmMarker${index}`]);
               });
               this.bounds.extend(this[`farmMarker${index}`].getPosition());

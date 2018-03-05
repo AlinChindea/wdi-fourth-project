@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
 import Auth from '../../lib/Auth';
+import ReactFilestack from 'filestack-react';
 
 class UserProfile extends Component {
   state = {
     user: {},
-    farmers: []
+    farmers: [],
+    activeTab: 'messages'
   }
 
   componentWillMount() {
@@ -26,21 +28,36 @@ class UserProfile extends Component {
       .catch(err => console.log(err));
   }
 
+  handleImageUpload = result => {
+    const user = Object.assign({}, this.state.user, { image: result.filesUploaded[0].url});
+    this.setState({ user}, () => {
+      // Axios
+      //   .post
+    });
+  }
+
+  handleSelectTab = ({target: {dataset: { value }}}) => {
+    console.log('old state: ', this.state);
+    this.setState({activeTab: value}, () => console.log('new state: ', this.state));
+  }
+
   render() {
     return(
       <div className="container">
 
         <div className="row my-2">
           <div className="col-lg-8 order-lg-2">
+
+
             <ul className="nav nav-tabs">
               <li className="nav-item">
-                <a data-target="#profile" data-toggle="tab" className="nav-link active">Profile</a>
+                <a data-target="#profile" data-value="profile" onClick={this.handleSelectTab} data-toggle="tab" className={`nav-link ${this.state.activeTab === 'profile' ? 'active' : ''}`}>Profile</a>
               </li>
               <li className="nav-item">
-                <a data-target="#messages" data-toggle="tab" className="nav-link">Messages</a>
+                <a data-target="#messages" data-toggle="tab" onClick={this.handleSelectTab} data-value="messages"  className={`nav-link ${this.state.activeTab === 'messages' ? 'active' : ''}`}>Messages</a>
               </li>
               <li className="nav-item">
-                <a data-target="#edit" data-toggle="tab" className="nav-link">Edit</a>
+                <a data-target="#edit" data-value="edit" onClick={this.handleSelectTab} data-toggle="tab" className="nav-link">Edit</a>
               </li>
             </ul>
             <div className="tab-content py-4">
@@ -65,15 +82,7 @@ class UserProfile extends Component {
                     })}
                   </ul>
                   <div className="col-md-6">
-                    <h6>Recent badges</h6>
-                    <a href="#" className="badge badge-dark badge-pill">html5</a>
-                    <a href="#" className="badge badge-dark badge-pill">react</a>
-                    <a href="#" className="badge badge-dark badge-pill">codeply</a>
-                    <a href="#" className="badge badge-dark badge-pill">angularjs</a>
-                    <a href="#" className="badge badge-dark badge-pill">css3</a>
-                    <a href="#" className="badge badge-dark badge-pill">jquery</a>
-                    <a href="#" className="badge badge-dark badge-pill">bootstrap</a>
-                    <a href="#" className="badge badge-dark badge-pill">responsive-design</a>
+
                     <hr />
                   </div>
                   <div className="col-md-12">
@@ -229,13 +238,20 @@ class UserProfile extends Component {
             </div>
           </div>
           <div className="col-lg-4 order-lg-1 text-center">
-            <img src="//placehold.it/150" className="mx-auto img-fluid img-circle d-block" alt="avatar" />
+            <img src={this.state.user.image} className="mx-auto img-fluid img-circle d-block" alt="avatar" />
             <h6 className="mt-2">Upload a different photo</h6>
-            <label className="custom-file">
-              <input type="file" id="file" className="custom-file-input" />
-              <span className="custom-file-control">Choose file</span>
-            </label>
+            <ReactFilestack
+              apikey="AO99xY7O6Q56qp05Go2GFz"
+              buttonText="Upload a photo"
+              buttonClass="main-button"
+              onSuccess={this.handleImageUpload}
+              className="form-control"
+            />
           </div>
+          {/* { this.state.user.image && <div className="col-md-6">
+            <h2>Image Preview</h2>
+            <img src={this.state.user.image} className="img-fluid" />
+          </div> } */}
         </div>
       </div>
     );

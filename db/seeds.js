@@ -12,6 +12,7 @@ User
     email: 'test@mail.com',
     password: 'test',
     passwordConfirmation: 'test',
+    image: 'https://goo.gl/SGvBkG',
     farmerTrue: false
   }])
   .then((users) => {
