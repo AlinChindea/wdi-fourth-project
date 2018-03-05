@@ -7,7 +7,7 @@ class UserProfile extends Component {
   state = {
     user: {},
     farmers: [],
-    activeTab: 'messages'
+    activeTab: 'profile'
   }
 
   componentWillMount() {
@@ -67,6 +67,7 @@ class UserProfile extends Component {
             </ul>
             <div className="tab-content py-4">
 
+              {this.state.activeTab === 'profile' &&
               <div className="tab-pane active" id="profile">
                 <h5 className="mb-3">User Profile</h5>
                 <div className="row">
@@ -124,8 +125,9 @@ class UserProfile extends Component {
                   </div>
                 </div>
 
-              </div>
-              <div className="tab-pane" id="messages">
+              </div>}
+              {this.state.activeTab === 'messages' &&
+              <div className="tab-pane active" id="messages">
                 <div className="alert alert-info alert-dismissable">
                   <a className="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
                 </div>
@@ -158,8 +160,9 @@ class UserProfile extends Component {
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              <div className="tab-pane" id="edit">
+              </div>}
+              {this.state.activeTab === 'edit' &&
+              <div className="tab-pane active" id="edit">
                 <form role="form">
                   <div className="form-group row">
                     <label className="col-lg-3 col-form-label form-control-label">First name</label>
@@ -239,15 +242,14 @@ class UserProfile extends Component {
                     </div>
                   </div>
                 </form>
-              </div>
+              </div>}
             </div>
           </div>
           <div className="col-lg-4 order-lg-1 text-center">
             <img src={this.state.user.image} className="mx-auto img-fluid img-circle d-block" alt="avatar" />
-            <h6 className="mt-2">Upload a different photo</h6>
             <ReactFilestack
               apikey="AO99xY7O6Q56qp05Go2GFz"
-              buttonText="Upload a photo"
+              buttonText="Upload a new photo"
               buttonClass="main-button"
               onSuccess={this.handleImageUpload}
               className="form-control"
