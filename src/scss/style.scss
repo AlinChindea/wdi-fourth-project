@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Hind:400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash');
+
 
 html,
 body {
@@ -13,6 +15,43 @@ body {
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+.site-header {
+  height: 100px;
+}
+
+.nav-logo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  &:hover {
+    text-decoration: none;
+  }
+  h1 {
+    font-family: 'Berkshire Swash', cursive;
+    color: black;
+    &.appName {
+      transform: rotate(-10deg);
+    }
+    &.appSurName {
+      transform: rotate(10deg);
+    }
+  }
+  .tractor-logo {
+    height: 80px;
+    margin: 0 20px;
+  }
+  @media only screen and (max-width: 767px) {
+    h1 {
+      display: none;
+    }
+  }
+}
+
 
 //SHOW PAGE
 .container {
@@ -90,18 +129,6 @@ body {
 
 header {
   background: transparent;
-}
-
-.tractor-logo {
-  position: relative;
-  top: -30px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  text-align: center;
-  font-size: 60px;
-  color: #eee;
-  background: #fff;
-  padding: 0 30px;
 }
 
 // index page Styling

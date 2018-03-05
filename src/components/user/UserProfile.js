@@ -3,6 +3,8 @@ import Axios from 'axios';
 import Auth from '../../lib/Auth';
 import ReactFilestack from 'filestack-react';
 
+import RegisterForm from '../auth/RegisterForm';
+
 class UserProfile extends Component {
   state = {
     user: {},
@@ -43,7 +45,7 @@ class UserProfile extends Component {
 
   handleSelectTab = ({target: {dataset: { value }}}) => {
     console.log('old state: ', this.state);
-    this.setState({activeTab: value}, () => console.log('new state: ', this.state));
+    this.setState({activeTab: value});
   }
 
   render() {

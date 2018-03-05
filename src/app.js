@@ -19,8 +19,14 @@ class App extends React.Component {
     return (
       <Router>
         <div >
-          <NavBar props={this.state}/>
-          <Link to="/" className="text-center"> <img src='../assets/tractor-logo.png' className="tractor-logo" /></Link>
+          <header className="site-header">
+            <NavBar props={this.state}/>
+            <Link to="/" className="nav-logo">
+              <h1 className="appName">Farmer</h1>
+              <img src='../assets/tractor-logo.png' className="tractor-logo" />
+              <h1 className="appSurName">Friends</h1>
+            </Link>
+          </header>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <FarmersRoutes />
