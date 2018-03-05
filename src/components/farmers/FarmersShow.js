@@ -6,6 +6,7 @@ import Axios from 'axios';
 import GoogleMap from '../utility/GoogleMap';
 import Auth from '../../lib/Auth';
 import DonationBox from './DonationBox';
+import DonationTotal from './DonationTotal';
 
 
 class FarmersShow extends Component {
@@ -19,7 +20,8 @@ class FarmersShow extends Component {
     newDonation: {
       donationAmount: '',
       product: ''
-    }
+    },
+    donationTotal: []
   }
 
   deleteFarmer = () => {
@@ -65,11 +67,6 @@ class FarmersShow extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-5 col-sm-12">
-            {this.state.farmer.donations && this.state.farmer.donations.map((donation, i) => {
-              const totalDonations = donation.donationAmount;
-              const totalDonationsSum = totalDonations.reduce();
-              return <p key={i}>{totalDonationsSum}</p>;
-            })}
             <img src={this.state.farmer.image} className="img-fluid showImg"/>
             <br />
             <h3><strong>{this.state.farmer.name}</strong></h3>
@@ -136,6 +133,12 @@ class FarmersShow extends Component {
             }
           </div>
         </div>
+          <DonationTotal
+            farmer={this.state.farmer}
+            donationTotal={this.state.donationTotal}
+          />
+
+
       </div>
     );
   }
