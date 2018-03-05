@@ -27,7 +27,7 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, errors, us
                         onChange={handleChange}
                         value={user.fullname}
                       />
-                      { errors.fullname && <p className="alert alert-warning" role="alert">{errors.fullname}</p>}
+                      { errors.fullname && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.fullname}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -37,7 +37,7 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, errors, us
                         onChange={handleChange}
                         value={user.email}
                       />
-                      { errors.email && <p className="alert alert-warning" role="alert">{errors.email}</p>}
+                      { errors.email && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.email}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -48,7 +48,6 @@ const RegisterForm = ({handleChange, handleSubmit, handleImageUpload, errors, us
                         value={user.password}
                         className="form-control"
                       />
-                      { errors.password && <p className="alert alert-warning" role="alert">{errors.password}</p>}
                     </div>
                     <div className="form-group">
                       <input

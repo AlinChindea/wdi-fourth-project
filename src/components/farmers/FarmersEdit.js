@@ -84,6 +84,7 @@ class FarmersEdit extends React.Component {
         errors={this.state.errors}
         handleFormCheckBox={this.handleFormCheckBox}
         handleImageUpload={this.handleImageUpload}
+        setLatLng={this.setLatLng}
       />
     );
   }
