@@ -43,15 +43,9 @@ class FarmersShow extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const sponsored = Object.assign({}, this.state.farmer.sponsored, { userId: Auth.getPayload().userId });
-
-    const farmer = Object.assign({}, this.state.farmer, { sponsored });
-
-    this.setState({ farmer });
-
     Axios
       .put(`/api/farmers/${this.props.match.params.id}`, this.state.farmer)
-      .then(res => console.log(res.data))
+      .then(res => this.setState(res.data))
       .catch(err => console.log(err));
   }
 
@@ -60,6 +54,15 @@ class FarmersShow extends Component {
       .get(`/api/farmers/${this.props.match.params.id}`)
       .then(res => this.setState({ farmer: res.data, center: {lat: res.data.location.lat, lng: res.data.location.lng}}))
       .catch(err => console.log(err));
+  }
+
+  handleUserId = () => {
+    const sponsored = Object.assign({}, this.state.farmer.sponsored, { userId: Auth.getPayload().userId });
+
+    const farmer = Object.assign({}, this.state.farmer, { sponsored });
+    console.log(farmer);
+
+    // this.setState({ farmer }, () => console.log(this.state.farmer));
   }
 
   render() {
