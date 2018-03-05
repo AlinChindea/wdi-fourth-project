@@ -57,6 +57,9 @@ body {
 .container {
   .row {
     div {
+      &.mt-4 {
+        min-height: 400px;
+      }
       ul {
         &.farmer-offer-list {
           font-weight: bold;
@@ -75,6 +78,11 @@ body {
         img {
           &.index-image {
             margin-bottom: 10px;
+          }
+        }
+        h5 {
+          &.index-names {
+            min-height: 40px;
           }
         }
       }
@@ -163,6 +171,10 @@ select.form-control:not([size]):not([multiple]) {
 
 a.infoWindowLink, .col-sm-3 {
   color: black;
+}
+
+.modal-font-color {
+  color: #000;
 }
 
 .brand-logo{
