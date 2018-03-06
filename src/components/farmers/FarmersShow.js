@@ -111,12 +111,9 @@ class FarmersShow extends Component {
         this.setState({ farmer, newComment: { content: '' } });
       })
       .catch(err => console.log(err));
-    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {
-    console.log(this.state.farmer);
-
     let isCurrentUsers = null;
     if (Auth.isAuthenticated() && this.state.farmer.createdBy) isCurrentUsers = Auth.getPayload().userId === this.state.farmer.createdBy.id;
     return(
