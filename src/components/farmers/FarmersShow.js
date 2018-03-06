@@ -111,6 +111,7 @@ class FarmersShow extends Component {
         this.setState({ farmer, newComment: { content: '' } });
       })
       .catch(err => console.log(err));
+    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {
@@ -202,14 +203,15 @@ class FarmersShow extends Component {
 
         <br />
         <div className="row">
-          <div className="col-10">
+          <div className="col-12">
+            <h2>Leave a comment</h2>
             {this.state.farmer.comments && this.state.farmer.comments.map(comment => {
               return(
                 <div key={comment._id} className="comment">
                   <p>{comment.content} </p>
                   <p><strong>{comment.createdBy.username}</strong></p>
                   { Auth.isAuthenticated() && Auth.getPayload().userId === comment.createdBy.id && <button className="btn btn-outline-danger btn-sm" onClick={() => this.deleteComment(comment._id)}>
-                    Delete</button>}
+                    <i className="fa fa-trash" aria-hidden="true"></i></button>}
                   <hr />
                 </div>
               );
@@ -217,7 +219,7 @@ class FarmersShow extends Component {
           </div>
         </div>
         { Auth.isAuthenticated() &&
-        <div className="col-sm-12">
+        <div className="col-12">
           <CommentsForm
             handleCommentChange={ this.handleCommentChange }
             handleCommentSubmit={ this.handleCommentSubmit }
