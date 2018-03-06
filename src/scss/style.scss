@@ -187,11 +187,11 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
-a.infoWindowLink, .col-sm-3 {
-  color: black;
+a.infoWindowLink, .col-sm-3, .modal-font-color  {
+  color: #000;
 }
 
-.modal-font-color {
+a.infoWindowLink:hover {
   color: #000;
 }
 
@@ -299,7 +299,6 @@ a:hover {
 .btn{
     -webkit-transition: 350ms ease all;
     transition: 350ms ease all;
-    text-transform: uppercase;
     font-weight: 500;
     padding: .6rem 1.5rem;
     cursor: pointer;
@@ -313,6 +312,7 @@ a:hover {
 .btn-primary {
     background-color: #ff5722 !important;
     border-color: #ff5722 !important;
+    text-transform: uppercase;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-outline-warning:hover {
     color: #fff !important;
@@ -376,4 +376,10 @@ a:hover {
   color: #ff5722;
   background: rgba(0,0,0,0);
   border: none;
+}
+
+.comments-box {
+  width: 100%;
+  border-color: #ff5722;
+  min-height: 130px;
 }

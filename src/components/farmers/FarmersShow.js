@@ -111,6 +111,7 @@ class FarmersShow extends Component {
         this.setState({ farmer, newComment: { content: '' } });
       })
       .catch(err => console.log(err));
+    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {
@@ -162,7 +163,7 @@ class FarmersShow extends Component {
                 </ul>
               </div>
             </div>
-            {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
+            {Auth.isAuthenticated() && this.userHasAdopted() && <p><em>Contact Us at: {this.state.farmer.email} or {this.state.farmer.number}</em></p>}
           </div>
           <div className="col-md-7 col-sm-12">
             {!this.state.center.lat && <h1>map loading...</h1>}
@@ -202,14 +203,15 @@ class FarmersShow extends Component {
 
         <br />
         <div className="row">
-          <div className="col-10">
+          <div className="col-12">
+            <h2>Leave a comment</h2>
             {this.state.farmer.comments && this.state.farmer.comments.map(comment => {
               return(
                 <div key={comment._id} className="comment">
                   <p>{comment.content} </p>
-                  <p><strong>{comment.createdBy.username}</strong></p>
+                  <p>Posted by: <strong>{comment.createdBy.fullname}</strong></p>
                   { Auth.isAuthenticated() && Auth.getPayload().userId === comment.createdBy.id && <button className="btn btn-outline-danger btn-sm" onClick={() => this.deleteComment(comment._id)}>
-                    Delete</button>}
+                    <i className="fa fa-trash" aria-hidden="true"></i></button>}
                   <hr />
                 </div>
               );
@@ -217,13 +219,13 @@ class FarmersShow extends Component {
           </div>
         </div>
         { Auth.isAuthenticated() &&
-        <div className="col-6">
+
           <CommentsForm
             handleCommentChange={ this.handleCommentChange }
             handleCommentSubmit={ this.handleCommentSubmit }
             newComment={ this.state.newComment }
           />
-        </div>
+
         }
 
       </div>
