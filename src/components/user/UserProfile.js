@@ -26,7 +26,7 @@ class UserProfile extends Component {
       .get('/api/farmers')
       .then(res => {
         const filteredFarmers = res.data.filter(farmer => this.state.user.adopted.some(adoptedFarmerId => farmer.id === adoptedFarmerId));
-        this.setState({farmers: filteredFarmers});
+        this.setState({farmers: filteredFarmers}, () => console.log(this.state.farmers));
       })
       .catch(err => console.log(err));
   }
@@ -49,6 +49,20 @@ class UserProfile extends Component {
   }
 
   render() {
+    let donationData = [];
+    if(!this.state.farmers[0]) {
+      return false;
+    } else {
+      this.state.farmers.map((farmer, i) => {
+        farmer.donations.map((donate, i) => {
+          if(donate.userId === this.props.match.params.id) {
+            donationData.push([farmer.name, donate.donationAmount, donate.product]);
+            // return <p key={i}>{donate.userId}</p>;
+          }
+          return;
+        });
+      });
+    }
     return(
       <div className="container">
         <div className="row">
@@ -103,43 +117,31 @@ class UserProfile extends Component {
               {this.state.activeTab === 'donations' &&
               <div className="tab-pane active" id="donations">
                 <div className="alert alert-info alert-dismissable">
-                  <a className="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important donations to the farmer.
+                  <a className="panel-close close" data-dismiss="alert">×</a> These are your Donations:
                 </div>
-                <table className="table table-hover table-striped">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <span className="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span className="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span className="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span className="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus.
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span className="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div>
+                  { donationData[0] && donationData.map((data, i) =>
+                    <div key={i}>
+                      <ul>
+                        { data.map((d, i) => {
+                          if(d === 'weekendStay' || d === 'produce' || d === 'farmExperience') {
+                            const titleCase = d.replace( /([A-Z])/g, ' $1' );
+                            const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
+                            return <li key={i}>{[result]}</li>;
+                          } else {
+                            return <li key={i}>{d}</li>;
+                          }
+                        })
+                        }
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>}
-
             </div>
           </div>
           <div className="col-lg-4 order-lg-1 text-center">
-            <img src={this.state.user.image} className="mx-auto img-fluid img-circle d-block" alt="avatar" />
+            <img src={this.state.user.image} className="mx-auto img-fluid img-circle d-block image-max-min" alt={this.state.user.name} />
             <ReactFilestack
               apikey="AO99xY7O6Q56qp05Go2GFz"
               buttonText="Upload a new photo"
@@ -150,10 +152,6 @@ class UserProfile extends Component {
             {' '}
             <button className="btn btn-outline-primary"><i className="fa fa-pencil" aria-hidden="true"></i>Edit profile</button>
           </div>
-          {/* { this.state.user.image && <div className="col-md-6">
-            <h2>Image Preview</h2>
-            <img src={this.state.user.image} className="img-fluid" />
-          </div> } */}
         </div>
       </div>
     );
