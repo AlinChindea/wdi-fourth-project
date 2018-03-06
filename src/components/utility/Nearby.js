@@ -92,8 +92,6 @@ class Nearby extends React.Component {
   }
 
   render() {
-    // console.log('farmers inside Nearby', this.props.farmers);
-
     return (
       <div className="googlemap" ref={element => this.mapCanvas = element}>Google Map goes here...</div>
     );

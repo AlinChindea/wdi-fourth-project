@@ -39,18 +39,16 @@ class UserProfile extends Component {
         .put(`/api/users/${this.props.match.params.id}`, userUpdate, {
           headers: { 'Authorization': `Bearer ${Auth.getToken()}` }
         })
-        .then((res) => console.log(res))
+        .then(res => this.setState(res.data))
         .catch(err => this.setState({errors: err.response.data.errors}));
     });
   }
 
   handleSelectTab = ({target: {dataset: { value }}}) => {
-    console.log('old state: ', this.state);
     this.setState({activeTab: value});
   }
 
   render() {
-    console.log(this.state.farmers);
     return(
       <div className="container">
         <div className="row">

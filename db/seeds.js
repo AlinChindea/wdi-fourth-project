@@ -49,6 +49,7 @@ User
         sponsor: users[0],
         email: 'farmer.joe@fj.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       },{
         name: 'Farmer Mary',
@@ -75,6 +76,7 @@ User
         sponsor: users[0],
         email: 'farmer.mary@fm.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       },{
         name: 'Farmer Steve',
@@ -101,6 +103,7 @@ User
         sponsor: users[0],
         email: 'farmer.steve@fs.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       },{
         name: 'Farmer Alin',
@@ -127,6 +130,7 @@ User
         sponsor: users[0],
         email: 'farmer.alin@fa.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       },{
         name: 'Farmer Stephanie',
@@ -153,6 +157,7 @@ User
         sponsor: users[0],
         email: 'farmer.stephanie@fs.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       },{
         name: 'Farmer Pedro',
@@ -179,6 +184,7 @@ User
         sponsor: users[0],
         email: 'farmer.pedro@fp.com',
         number: '0123456789',
+        createdBy: users[0],
         farmerTrue: true
       }]);
   })
