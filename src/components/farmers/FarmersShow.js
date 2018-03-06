@@ -115,8 +115,6 @@ class FarmersShow extends Component {
   }
 
   render() {
-    console.log(this.state.farmer);
-
     let isCurrentUsers = null;
     if (Auth.isAuthenticated() && this.state.farmer.createdBy) isCurrentUsers = Auth.getPayload().userId === this.state.farmer.createdBy.id;
     return(
@@ -220,7 +218,7 @@ class FarmersShow extends Component {
           </div>
         </div>
         { Auth.isAuthenticated() &&
-        <div className="col-6">
+        <div className="col-sm-12">
           <CommentsForm
             handleCommentChange={ this.handleCommentChange }
             handleCommentSubmit={ this.handleCommentSubmit }
