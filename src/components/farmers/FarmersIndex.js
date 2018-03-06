@@ -45,10 +45,18 @@ class FarmersIndex extends Component {
     return(
       <React.Fragment>
         { Auth.isAuthenticated() &&
-        <SearchBar
-          handleSort={this.handleSort}
-          handleSearch={this.handleSearch}
-        />}
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <SearchBar
+                handleSort={this.handleSort}
+                handleSearch={this.handleSearch}
+              />
+            </div>
+          </div>
+          <br />
+        </div>
+        }
         <section className="hero">
           <div className="container text-center">
             <div className="row">
