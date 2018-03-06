@@ -209,7 +209,7 @@ class FarmersShow extends Component {
               return(
                 <div key={comment._id} className="comment">
                   <p>{comment.content} </p>
-                  <p><strong>{comment.createdBy.username}</strong></p>
+                  <p>Posted by: <strong>{comment.createdBy.fullname}</strong></p>
                   { Auth.isAuthenticated() && Auth.getPayload().userId === comment.createdBy.id && <button className="btn btn-outline-danger btn-sm" onClick={() => this.deleteComment(comment._id)}>
                     <i className="fa fa-trash" aria-hidden="true"></i></button>}
                   <hr />
@@ -219,13 +219,13 @@ class FarmersShow extends Component {
           </div>
         </div>
         { Auth.isAuthenticated() &&
-        <div className="col-12">
+
           <CommentsForm
             handleCommentChange={ this.handleCommentChange }
             handleCommentSubmit={ this.handleCommentSubmit }
             newComment={ this.state.newComment }
           />
-        </div>
+      
         }
 
       </div>
