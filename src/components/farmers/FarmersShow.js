@@ -163,7 +163,7 @@ class FarmersShow extends Component {
                 </ul>
               </div>
             </div>
-            {this.state.farmer.contact && <p><em>Contact Us at: {this.state.farmer.contact.email} or {this.state.farmer.contact.number}</em></p>}
+            {Auth.isAuthenticated() && this.userHasAdopted() && <p><em>Contact Us at: {this.state.farmer.email} or {this.state.farmer.number}</em></p>}
           </div>
           <div className="col-md-7 col-sm-12">
             {!this.state.center.lat && <h1>map loading...</h1>}
@@ -225,7 +225,7 @@ class FarmersShow extends Component {
             handleCommentSubmit={ this.handleCommentSubmit }
             newComment={ this.state.newComment }
           />
-      
+
         }
 
       </div>
