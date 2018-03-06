@@ -3,7 +3,7 @@ import ReactFilestack from 'filestack-react';
 import GoogleAutocomplete from '../utility/GoogleAutocomplete';
 import BackButton from '../utility/BackButton';
 
-function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng, history}) {
+function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormCheckBox, handleImageUpload, setLatLng, history }) {
   const formIsInvalid = Object.keys(errors).some(key => errors[key]);
   return (
     <section className="hero">

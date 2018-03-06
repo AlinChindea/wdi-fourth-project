@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-// import ProtectedRoute from '../utility/ProtectedRoute';
+import ProtectedRoute from '../utility/ProtectedRoute';
 
 
 import FarmersIndex from './FarmersIndex';
@@ -16,7 +16,7 @@ const FarmersRoutes = () => {
   return (
     <Switch>
       <Route path="/farmers/:id/edit" component={FarmersEdit} />
-      <Route path="/farmers/new" component={FarmersNew} />
+      <ProtectedRoute path="/farmers/new" component={FarmersNew} />
       <Route path="/farmers/nearby" component={FarmersNearby} />
       <Route path="/farmers/:id" component={FarmersShow} />
       <Route path="/users/:id" component={UserProfile}/>
