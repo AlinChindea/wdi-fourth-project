@@ -95,6 +95,19 @@ body {
   }
 }
 
+// UserProfile
+
+// .user-donations {
+//   border: 1px solid orange;
+//   max-width: 400px;
+// }
+
+.user-donations-list {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .save-btn-form {
   margin-bottom: 20px;
 }

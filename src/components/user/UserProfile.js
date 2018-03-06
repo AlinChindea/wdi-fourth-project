@@ -49,12 +49,12 @@ class UserProfile extends Component {
   }
 
   render() {
-    let donationData = [];
+    const donationData = [];
     if(!this.state.farmers[0]) {
       return false;
     } else {
-      this.state.farmers.map((farmer, i) => {
-        farmer.donations.map((donate, i) => {
+      this.state.farmers.map((farmer) => {
+        farmer.donations.map((donate) => {
           if(donate.userId === this.props.match.params.id) {
             donationData.push([farmer.name, donate.donationAmount, donate.product]);
             // return <p key={i}>{donate.userId}</p>;
@@ -86,17 +86,15 @@ class UserProfile extends Component {
 
               {this.state.activeTab === 'profile' &&
               <div className="tab-pane active" id="profile">
+                <div className="row text-center">
+                  <div className="col-12">
+                    <h5>Welcome back, {this.state.user.fullname}.  </h5>
+                  </div>
+                </div>
                 <div className="row">
-                  <div className="col-md-6">
-                    <h5>Welcome back, {this.state.user.fullname}. 🚜 </h5>
-                  </div>
-
-                  <div className="col-md-6">
-
-                    <hr />
-                  </div>
                   <div className="col-md-12">
-                    <h5 className="mt-2"><span className="fa fa-clock-o ion-clock float-right"></span> Your adopted farmers</h5>
+                    <h5 className="mt-2"><span> 🚜 </span> Your adopted farmers</h5>
+                    <br />
                     <table className="table table-sm table-hover table-striped">
                       <tbody>
                         <tr>
@@ -116,26 +114,32 @@ class UserProfile extends Component {
               </div>}
               {this.state.activeTab === 'donations' &&
               <div className="tab-pane active" id="donations">
-                <div className="alert alert-info alert-dismissable">
-                  <a className="panel-close close" data-dismiss="alert">×</a> These are your Donations:
+                <div className="row">
+                  <div className="col-12 text-center">
+                    <h2>These are your donations: </h2>
+                  </div>
                 </div>
-                <div>
-                  { donationData[0] && donationData.map((data, i) =>
-                    <div key={i}>
-                      <ul>
-                        { data.map((d, i) => {
-                          if(d === 'weekendStay' || d === 'produce' || d === 'farmExperience') {
-                            const titleCase = d.replace( /([A-Z])/g, ' $1' );
-                            const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
-                            return <li key={i}>{[result]}</li>;
-                          } else {
-                            return <li key={i}>{d}</li>;
+                <div className="row">
+                  <div className="col-12 text-center">
+                    { donationData[0] && donationData.map((data, i) =>
+                      <div className="user-donations" key={i}>
+                        <ul>
+                          { data.map((d, i) => {
+                            if(d === 'weekendStay' || d === 'produce' || d === 'farmExperience') {
+                              const titleCase = d.replace( /([A-Z])/g, ' $1' );
+                              const result =  titleCase.charAt(0).toUpperCase() + titleCase.slice(1);
+                              return <li className="user-donations-list" key={i}>{[result]}</li>;
+                            } else if(d === 50 || d === 100 || d === 200) {
+                              return <li className="user-donations-list" key={i}>£{d}</li>;
+                            } else {
+                              return <li className="user-donations-list" key={i}>{d}</li>;
+                            }
+                          })
                           }
-                        })
-                        }
-                      </ul>
-                    </div>
-                  )}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>}
             </div>
@@ -145,12 +149,12 @@ class UserProfile extends Component {
             <ReactFilestack
               apikey="AO99xY7O6Q56qp05Go2GFz"
               buttonText="Upload a new photo"
-              buttonClass="btn-primary"
+              buttonClass="btn btn-block btn-primary"
               onSuccess={this.handleImageUpload}
               className="form-control"
             />
-            {' '}
-            <button className="btn btn-outline-primary"><i className="fa fa-pencil" aria-hidden="true"></i>Edit profile</button>
+            <br />
+            <button className="btn btn-block btn-outline-primary"><i className="fa fa-pencil" aria-hidden="true"></i> Edit profile</button>
           </div>
         </div>
       </div>
