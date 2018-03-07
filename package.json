@@ -1,11 +1,9 @@
 {
-  "name": "Farmer Friends",
+  "name": "wdi-project",
   "version": "1.0.0",
   "description": "A React and Webpack setup for WDI",
   "main": "index.js",
   "license": "MIT",
-  "authors": "Alin Chindea - https://github.com/EagleEye182,
-              Anish Vadher - https://github.com/avadher510",
   "scripts": {
     "start": "yarn build && node index",
     "build": "webpack -p",

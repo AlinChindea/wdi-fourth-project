@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../lib/Auth';
 
 import Modal from '../utility/Modal';
 
@@ -38,6 +39,7 @@ const FarmersHome = () => {
             </div>
           </div>
 
+          {!Auth.isAuthenticated() &&
           <div className="col-md-4 col-sm-12 grow">
             <div className="card">
               <Link to="/login"><div className="card-body text-center">
@@ -46,7 +48,7 @@ const FarmersHome = () => {
               </div>
               </Link>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </section>
