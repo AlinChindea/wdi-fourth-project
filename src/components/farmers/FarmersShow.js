@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-// import {Nav, NavItem} from 'react-bootstrap';
 
 import GoogleMap from '../utility/GoogleMap';
 import BackButton from '../utility/BackButton';
@@ -111,7 +110,6 @@ class FarmersShow extends Component {
         this.setState({ farmer, newComment: { content: '' } });
       })
       .catch(err => console.log(err));
-    // .catch(err => this.setState({ errors: err.response.data.errors }));
   }
 
   render() {

@@ -57,7 +57,6 @@ class UserProfile extends Component {
         farmer.donations.map((donate) => {
           if(donate.userId === this.props.match.params.id) {
             donationData.push([farmer.name, donate.donationAmount, donate.product]);
-            // return <p key={i}>{donate.userId}</p>;
           }
           return;
         });
