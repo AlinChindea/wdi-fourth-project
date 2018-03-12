@@ -169,24 +169,41 @@ class FarmersShow extends Component {
             {Auth.isAuthenticated() && this.userHasAdopted() && <p><em>Contact Us at: {this.state.farmer.email} or {this.state.farmer.number}</em></p>}
           </div>
           <div className="col-md-7 col-sm-12">
-            {!this.state.center.lat && <h1>map loading...</h1>}
-            {this.state.center.lat &&
+            <ul className="nav nav-tabs justify-content-center">
+              <li className="nav-item">
+                <a data-target="#map" data-value="map" onClick={this.handleSelectTab} data-toggle="tab" className={`nav-link ${this.state.activeTab === 'map' ? 'active' : ''}`}>Directions</a>
+              </li>
+              <li className="nav-item">
+                <a data-target="#donate" data-toggle="tab" onClick={this.handleSelectTab} data-value="donate"  className={`nav-link ${this.state.activeTab === 'donate' ? 'active' : ''}`}>Donations</a>
+              </li>
+            </ul>
+
+            <div className="tab-content py-4">
+              {this.state.activeTab === 'map' &&
+              <div className="tab-pane active" id="map">
+                {!this.state.center.lat && <h1>map loading...</h1>}
+                {this.state.center.lat &&
             <GoogleMap center={this.state.center}/>}
-            <br />
-            <div className="col-12">
-              {Auth.isAuthenticated() && !this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>ADOPT!</button>}
-              {Auth.isAuthenticated() && this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
-            </div>
-            <br />
-            {Auth.isAuthenticated() &&
+
+              </div>}
+
+              {this.state.activeTab === 'donate' &&
+              <div className="tab-pane active" id="donate">
+                {Auth.isAuthenticated() &&
               <div className="col-12">
                 <DonationBox
                   newDonation={this.state.newDonation}
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                 />
-              </div>
-            }
+              </div>}
+              </div>}
+            </div>
+            <br />
+            <div className="col-12">
+              {Auth.isAuthenticated() && !this.userHasAdopted() && <button className="btn btn-primary btn-sm btn-block" onClick={this.adoptFarmer}>ADOPT!</button>}
+              {Auth.isAuthenticated() && this.userHasAdopted() && <button className="btn btn-success btn-sm btn-block">Thanks for Adopting</button>}
+            </div>
             {!Auth.isAuthenticated() &&
               <div className="col-12">
                 <p>To Donate to: {this.state.farmer.name}</p>
@@ -197,9 +214,11 @@ class FarmersShow extends Component {
                 </Link>
               </div>
             }
+
           </div>
         </div>
         <br />
+
         <DonationTotal
           farmer={this.state.farmer}
         />
@@ -222,15 +241,12 @@ class FarmersShow extends Component {
           </div>
         </div>
         { Auth.isAuthenticated() &&
-
           <CommentsForm
             handleCommentChange={ this.handleCommentChange }
             handleCommentSubmit={ this.handleCommentSubmit }
             newComment={ this.state.newComment }
           />
-
         }
-
       </div>
     );
   }
