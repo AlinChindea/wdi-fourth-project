@@ -28,7 +28,7 @@ const DonationBox = ({ newDonation, handleChange, handleSubmit }) => {
           onChange={handleChange}
           defaultValue={newDonation.donationAmount}
         >
-          <option value="" disabled>Please Select</option>
+          <option value="" disabled>Select donation amount</option>
           <option name="donationAmount" value="50">£50</option>
           <option name="donationAmount" value="100">£100</option>
           <option name="donationAmount" value="200">£200</option>
