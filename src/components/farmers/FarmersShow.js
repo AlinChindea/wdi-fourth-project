@@ -24,7 +24,12 @@ class FarmersShow extends Component {
     },
     newComment: {
       content: ''
-    }
+    },
+    activeTab: 'map'
+  }
+
+  handleSelectTab = ({target: {dataset: { value }}}) => {
+    this.setState({activeTab: value});
   }
 
   deleteFarmer = () => {
