@@ -314,6 +314,13 @@ a:hover {
     border-color: #ff5722 !important;
     text-transform: uppercase;
 }
+
+button.button-photo {
+  background-color: rgba(0, 0, 0, 0.1);;
+  border-color: #ff5722 !important;
+  text-transform: uppercase;
+  color: #fff;
+}
 .btn-primary:hover, .btn-primary:focus, .btn-outline-warning:hover {
     color: #fff !important;
 }

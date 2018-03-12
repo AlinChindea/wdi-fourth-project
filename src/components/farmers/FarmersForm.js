@@ -36,16 +36,6 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
                         />
                         { errors.name && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.name}</p>}
                       </div>
-                      <div className="form-group">
-                        <ReactFilestack
-                          apikey="AO99xY7O6Q56qp05Go2GFz"
-                          buttonText="Upload a photo"
-                          buttonClass="main-button btn-primary"
-                          onSuccess={handleImageUpload}
-                          className="form-control"
-                        />
-                        {errors.image && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.image}</p>}
-                      </div>
                       <GoogleAutocomplete setLatLng={setLatLng} />
                       <div className="form-group">
                         <input
@@ -87,11 +77,11 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
                       <div className="form-group">
                         <label htmlFor="looking">Farmer offers:</label>
                         <br />
-                        Produce <input type="checkbox" name="Produce" value="produce" checked={farmer.offer.produce} onChange={handleFormCheckBox}/>
+                        <input type="checkbox" name="Produce" value="produce" checked={farmer.offer.produce} onChange={handleFormCheckBox}/> Produce
                         {' '}
-                        Weekend Stay <input type="checkbox" name="Weekend Stay" value="weekendStay" checked={farmer.offer.weekendStay} onChange={handleFormCheckBox}/>
+                        <input type="checkbox" name="Weekend Stay" value="weekendStay" checked={farmer.offer.weekendStay} onChange={handleFormCheckBox}/> Weekend Stay
                         {' '}
-                        Farm Experiences <input type="checkbox" name="Farm Experiences" value="farmExperience" checked={farmer.offer.farmExperience} onChange={handleFormCheckBox}/>
+                        <input type="checkbox" name="Farm Experiences" value="farmExperience" checked={farmer.offer.farmExperience} onChange={handleFormCheckBox}/> Farm Experience
                       </div>
                       {errors.offer && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.offer}</p>}
                       <div className="form-group">
@@ -117,6 +107,16 @@ function FarmersForm({handleSubmit, handleChange, farmer, errors, handleFormChec
                           onChange={handleChange}
                         />
                         { errors.number && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.number}</p>}
+                      </div>
+                      <div className="form-group">
+                        <ReactFilestack
+                          apikey="AO99xY7O6Q56qp05Go2GFz"
+                          buttonText="Upload a photo"
+                          buttonClass="main-button button-photo"
+                          onSuccess={handleImageUpload}
+                          className="form-control"
+                        />
+                        {errors.image && <p className="alert alert-warning" role="alert"><i className="fa fa-exclamation-triangle"></i> {errors.image}</p>}
                       </div>
                       <div>
                         <button disabled={formIsInvalid} className="btn btn-primary btn-block save-btn-form">Save</button>
