@@ -215,14 +215,12 @@ class FarmersShow extends Component {
               </div>
             }
 
+            <DonationTotal
+              farmer={this.state.farmer}
+            />
+
           </div>
         </div>
-        <br />
-
-        <DonationTotal
-          farmer={this.state.farmer}
-        />
-
         <br />
         <div className="row">
           <div className="col-12">
