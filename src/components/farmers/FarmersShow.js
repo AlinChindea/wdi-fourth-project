@@ -166,7 +166,6 @@ class FarmersShow extends Component {
                 </ul>
               </div>
             </div>
-            {Auth.isAuthenticated() && this.userHasAdopted() && <p><em>Contact Us at: {this.state.farmer.email} or {this.state.farmer.number}</em></p>}
           </div>
           <div className="col-md-7 col-sm-12">
             <ul className="nav nav-tabs justify-content-center">
@@ -176,6 +175,10 @@ class FarmersShow extends Component {
               <li className="nav-item">
                 <a data-target="#donate" data-toggle="tab" onClick={this.handleSelectTab} data-value="donate"  className={`nav-link ${this.state.activeTab === 'donate' ? 'active' : ''}`}>Donations</a>
               </li>
+              {Auth.isAuthenticated() && this.userHasAdopted() &&
+              <li className="nav-item">
+                <a data-target="#contact" data-toggle="tab" onClick={this.handleSelectTab} data-value="contact"  className={`nav-link ${this.state.activeTab === 'contact' ? 'active' : ''}`}>Contact</a>
+              </li>}
             </ul>
 
             <div className="tab-content py-4">
@@ -198,6 +201,13 @@ class FarmersShow extends Component {
                 />
               </div>}
               </div>}
+              {this.state.activeTab === 'contact' &&
+                <div className="tab-pane active" id="contact">
+                  <h5><em><a href={`mailto:${this.state.farmer.email}`}>Email this farmer</a></em></h5>
+                  <h5>Call this farmer {this.state.farmer.number}</h5>
+                </div>
+
+              }
             </div>
             <br />
             <div className="col-12">
