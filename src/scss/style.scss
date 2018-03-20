@@ -97,6 +97,10 @@ body {
 
 #contact a {
   color: #007bff;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 // UserProfile

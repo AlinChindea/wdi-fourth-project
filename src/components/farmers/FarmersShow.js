@@ -203,8 +203,8 @@ class FarmersShow extends Component {
               </div>}
               {this.state.activeTab === 'contact' &&
                 <div className="tab-pane active" id="contact">
-                  <h5><em><a href={`mailto:${this.state.farmer.email}`}>Email this farmer</a></em></h5>
-                  <h5>Call this farmer {this.state.farmer.number}</h5>
+                  <h5><em><a href={`mailto:${this.state.farmer.email}`}><i className="fa fa-envelope"></i> Email this farmer</a></em></h5>
+                  <h5><a href={`tel:${this.state.farmer.number}`}><i className="fa fa-phone"></i> Call this farmer</a></h5>
                 </div>
 
               }
